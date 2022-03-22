@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/components/*": ["core/components/*"],
+      "@/helper/*": ["core/helper/*"],
+      "@/layout/*": ["core/layout/*"],
+      "@api/*": ["core/api/*"],
+      "@/pages/*": ["pages/*"],
+      "@styles/*": ["styles/*"],
+      "@/*": ["core/*"]
+    },
+    "module": "commonjs",
+    "target": "es6"
+  }
+}
