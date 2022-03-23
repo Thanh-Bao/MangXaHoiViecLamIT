@@ -1,0 +1,205 @@
+import { API_URL } from '@/config';
+import { upload } from '@api/media';
+import { createPost } from '@api/post';
+import { PhotoLibrarySharp } from '@mui/icons-material';
+import { LoadingButton } from '@mui/lab';
+import { CircularProgress, Dialog, DialogContent, DialogTitle, IconButton, ImageList, ImageListItem, Input, Tooltip, Typography } from '@mui/material';
+import { makeStyles } from '@mui/styles';
+import { Box } from '@mui/system';
+import { ContentState, Editor, EditorState } from 'draft-js';
+import "draft-js/dist/Draft.css";
+import React, { forwardRef, useImperativeHandle, useRef, useState } from 'react';
+import Scrollbars from 'react-custom-scrollbars-2';
+import UserPostCreatePortalCard from '../user/post/userPostCreatePortalCard';
+import PostCreateLoading from './create/loading';
+
+const useStyles = makeStyles((theme) => ({
+    titleCreatePost: {
+        fontWeight: 'bold',
+        textAlign: 'center'
+    },
+    textEditor: { 
+        minHeight: "6em", 
+        cursor: "text",
+        width: '500px',
+    },
+    dialog: {
+        alignItems: 'baseline'
+    },
+    actionPost: {
+        border: '1px solid rgba(0, 0, 0, 0.12)',
+        margin: '10px 0',
+        padding: '7px 0',
+        borderRadius: '4px'
+    },
+    uploadPost: {
+        width: '100%',
+        background: '#000000',
+        color: 'white'
+    },
+    disabledUploadPost: {
+        background: '#d6d6d6'
+    },
+    uploadMedia: {
+        display: 'none'
+    },
+    buttonUpload: {
+        '&:hover': {
+            background: '#3d3d3d'
+        }
+    }
+}));
+
+const PostCreate = (props, ref) => {
+    const styles = useStyles();
+    const { me, afterLogin = () => {}  } = props;
+
+    const [open, setOpen] = useState(false);
+    const [editorState, setEditorState ] = useState(EditorState.createEmpty());
+    const [handlingRequest, setHandlingRequest] = useState(false);
+    const [fileUploads, setFileUploads] = useState([]);
+    const [fileLoadings, setFileLoadings] = useState([]);
+
+    const editorRef = useRef(null);
+    const userCard = useRef(null);    
+    const loadingModal = useRef(null);
+
+    useImperativeHandle(ref, () => ({
+        open: () => {
+            handleOpen();
+        }
+    }));
+
+    const handleOpen = () => { setOpen(true); }
+    const handleClose = () => { setOpen(false) }
+    const focusEditor = () => { editorRef.current.focus(); }
+
+    const uploadFiles = event => {
+        const files = event.target.files;
+        const filesName = _.map(Array.from(files), item => item.name);
+
+        setFileLoadings([ ...fileLoadings, filesName ]);
+
+        const fileHaveUploaded = _.map(Array.from(files), file => {
+            return new Promise((resolve, reject) => {
+                const formData = new FormData();
+                formData.append('media', file, file.name);
+
+                upload(formData).then(mediaDoc => {
+                    setFileLoadings(_.filter(fileLoadings, item => item != file.name));
+                    resolve(mediaDoc);
+                }).catch(error => {
+                    reject(error)
+                });
+            })
+        });
+
+        Promise.all(fileHaveUploaded).then(mediaDocs => {
+            setFileUploads(_.concat(mediaDocs, fileUploads));
+        }).catch(error => { })
+    }
+
+    const uploadPost = event => {
+        setHandlingRequest(true);
+        loadingModal.current.open();
+        
+        const mediaId = _.map(fileUploads, item => item._id);
+
+        const params = {
+            content: editorState.getCurrentContent().getPlainText(),
+            media: mediaId,
+            isAnonymous: userCard.current.anonymous,
+        }
+        createPost(params).then(post => {
+            setEditorState(EditorState.push(editorState, ContentState.createFromText('')));
+            setFileUploads([]);
+            handleClose();
+        }).finally(() => {
+            setHandlingRequest(false);
+            loadingModal.current.close();
+        })
+    }
+    
+    return (
+        <>
+            <Dialog open={open} onClose={handleClose} classes={{ container: styles.dialog }}>
+                <DialogTitle className={styles.titleCreatePost}> Đăng bài </DialogTitle>
+                <DialogContent dividers>
+                    <UserPostCreatePortalCard ref={userCard} user={me} />
+
+                    <br />
+
+                    <div className={styles.textEditor} onClick={focusEditor}> 
+                        <Editor
+                            ref={editorRef}
+                            editorState={editorState}
+                            onChange={setEditorState}
+                            placeholder="Cảm ơn bạn vì đã đóng góp nội dung..."
+                        />
+                    </div>
+
+                    {(fileUploads.length > 0 || fileLoadings.length > 0) && 
+                        <Scrollbars className={styles.wrapper} style={{ height: '225px',  width: '100%' }} universal={true}>
+                        
+                            <ImageList variant="masonry" cols={2} gap={8}>
+                                {fileUploads.map(item => (
+                                    
+
+                                    <ImageListItem key={item._id}>
+                                        <img
+                                            src={`${API_URL}${item.url}`}
+                                            srcSet={`${API_URL}${item.url}`}
+                                            alt={item.title}
+                                        />
+                                    </ImageListItem>
+                                ))}
+
+                                {fileLoadings.map((item, key) => (
+                                    <ImageListItem key={key}>
+                                        <Box component="span" sx={{ height: '30px', }}>
+                                            <CircularProgress />
+                                        </Box>
+                                    </ImageListItem>
+                                ))}
+                            </ImageList>
+                        </Scrollbars>
+                    }
+                    
+                    <div className={styles.actionPost} >
+                        <Tooltip title='Hình ảnh/Video'>
+                            <label htmlFor="icon-button-file">
+                                <Input id="icon-button-file" inputProps={{ multiple: true, accept: "image/*,video/*" }} type="file" className={styles.uploadMedia} onChange={uploadFiles} />
+
+                                <IconButton color="primary" aria-label="upload picture" component="span">
+                                    <PhotoLibrarySharp />
+                                </IconButton>
+                            </label>
+                        </Tooltip>
+                        <Typography variant="button">
+                            Thêm hình ảnh/video
+                        </Typography>
+                    </div>
+                        
+                    <div>
+                        <LoadingButton
+                            onClick={uploadPost} 
+                            disabled={(!(editorState.getCurrentContent().hasText() && editorState.getCurrentContent().getPlainText().length > 0) || fileUploads.length == 0 || fileLoadings > 0 || handlingRequest == true)} 
+                            loadingPosition="start"
+                            loading={handlingRequest}
+                            className={styles.buttonUpload}
+                            classes={{ 
+                                root: styles.uploadPost,
+                                disabled: styles.disabledUploadPost
+                            }}> 
+                            Đăng bài
+                        </LoadingButton> 
+                    </div>
+                </DialogContent>
+            </Dialog>
+
+            <PostCreateLoading ref={loadingModal} />
+        </>
+    )
+}
+
+export default forwardRef(PostCreate);
