@@ -1,0 +1,65 @@
+$drawerWidth: 240px;
+$backgroundButton: #ffffff1a;
+$backgroundButtonHover: #ffffff38;
+
+.webLayout {
+  display: flex;
+}
+
+.grow {
+  flex-grow: 1;
+}
+
+.baseButtonHover {
+  background-color: $backgroundButtonHover;
+}
+
+.baseButton {
+  background-color: $backgroundButton;
+
+  &:hover {
+    @extend .baseButtonHover;
+  }
+}
+
+.buttonLogin {
+  @extend .baseButton;
+  color: white !important;
+  border-radius: 18px;
+}
+
+.buttonCreatePost {
+  @extend .buttonLogin;
+  padding: 5px 20px;
+  background-color: $backgroundButton;
+}
+
+.logo {
+  height: 40px;
+  width: auto;
+}
+
+.meInfo {
+  color: white;
+  padding: 10px 2px;
+  background-color: transparent;
+  margin: auto;
+  cursor: pointer;
+
+  &:hover {
+    @extend .baseButtonHover;
+  }
+}
+
+.drawer {
+  width: $drawerWidth;
+  flex-shrink: 0;
+}
+
+.drawerPaper {
+  width: $drawerWidth;
+}
+
+.drawerContainer {
+  overflow: "auto";
+}
