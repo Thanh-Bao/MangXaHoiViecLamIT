@@ -24,11 +24,11 @@ const options = [
     },
     {
         policyId: 2,
-        label: 'Đồng ý xem nội dung kinh dị, máu me.'
+        label: 'Đồng ý tsdbgi fgiig gsdgds '
     },
     {
         policyId: 3,
-        label: 'Xác nhận bạn đã trên 18 tuổi.'
+        label: 'Quy định gnsdsdisidsdfsd.'
     },
     {
         policyId: 4,
@@ -36,7 +36,7 @@ const options = [
     },
     {
         policyId: 5,
-        label: ''
+        label: 's sdfsdfsd sdfsd sdf '
     },
 ];
 

@@ -26,15 +26,15 @@ export default function Application(props) {
     return (
         <React.Fragment>
             <Head>
-                <title>GORE VN</title>
+                <title>Tìm Việc Làm IT</title>
                 <meta
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
                 />
             </Head>
-            
+
             {consentPolicy ? null : <ConsentPolicy />}
-            
+
             <ThemeProvider theme={theme}>
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
                 <CssBaseline />
@@ -46,7 +46,7 @@ export default function Application(props) {
                     height={3}
                     showOnShallow={true}
                 />
-                
+
                 <SnackbarProvider maxSnack={1} anchorOrigin={{ horizontal: 'top', vertical: 'center' }}>
                     <Component {...pageProps} />
                 </SnackbarProvider>

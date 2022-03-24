@@ -1,6 +1,6 @@
 import env from '../env.json';
 
-export const SITE_NAME = 'GORE VN';
+export const SITE_NAME = 'Bao Bao';
 
 export const SITE_URL = env.SITE_URL;
 
