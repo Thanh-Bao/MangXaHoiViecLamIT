@@ -1,13 +1,13 @@
-package findjob;
+package findJob;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class FindjobApplication {
+public class FindJobApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FindjobApplication.class, args);
+		SpringApplication.run(FindJobApplication.class, args);
 	}
 
 }

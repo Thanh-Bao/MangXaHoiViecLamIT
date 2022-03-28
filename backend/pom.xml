@@ -8,12 +8,12 @@
 		<version>2.6.5</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>findjob</groupId>
-	<artifactId>findjob</artifactId>
+	<groupId>findJob</groupId>
+	<artifactId>findJob</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<packaging>war</packaging>
-	<name>findjob</name>
-	<description>find job C2C</description>
+	<name>findJob</name>
+	<description>find Job IT C2C</description>
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>
