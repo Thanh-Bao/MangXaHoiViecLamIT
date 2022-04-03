@@ -2,32 +2,32 @@ import React, { useState, useEffect } from 'react';
 import { Tooltip, IconButton } from '@mui/material';
 import { BookmarkBorder, Bookmark } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
-import { getMetaAccount, havedLogin } from "@/helper/account";
+import { getMetaAccount } from "@/helper/account";
 import { savePost, unSavePost } from '@api/post';
+import { useSelector } from 'react-redux';
 
 const BookmarkPost = ({ _id, userSave, isShowNumberLeft }) => {
     const { enqueueSnackbar } = useSnackbar();
 
     const [arrayUserSave, setArrayUserSave] = useState(userSave);
     const [havedSave, setHavedSave] = useState(false);
-    const [_havedLogin, setHavedLogin] = useState(null);
-
-    useEffect(() => {
-        setHavedLogin(Boolean(havedLogin()));
-        setHavedSave(checkHavedSave());
-    }, []) // do post/[slug].jsx là SSR nên phải getLocalStogare kiểu này, không checkLogin lúc init state được
+    const { havedLogin } = useSelector(state => state.posts);
 
     useEffect(() => {
         setHavedSave(checkHavedSave());
-    }, [arrayUserSave]);
+    }, [])
+
+    useEffect(() => {
+        setHavedSave(checkHavedSave());
+    }, [arrayUserSave, havedLogin]);
 
     function checkHavedSave() {
         const userId = getMetaAccount() ? getMetaAccount()._id : null;
-        return (userId && arrayUserSave && arrayUserSave.length ? arrayUserSave.some(item => item === userId) : false);
+        return (userId && arrayUserSave && arrayUserSave.length ? arrayUserSave.includes(userId) : false);
     }
 
     const savePostAction = () => {
-        if (_havedLogin === false) {
+        if (havedLogin === false) {
             enqueueSnackbar("Bạn cần đăng nhập để lưu bài viết này!")
             return;
         }

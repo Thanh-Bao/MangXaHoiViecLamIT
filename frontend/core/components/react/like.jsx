@@ -2,24 +2,24 @@ import React, { useState, useEffect } from 'react';
 import { IconButton } from '@mui/material';
 import { FavoriteBorder, Favorite } from '@mui/icons-material';
 import { useSnackbar } from 'notistack';
-import { getMetaAccount, havedLogin } from "@/helper/account";
+import { getMetaAccount } from "@/helper/account";
 import { reactPost, unReactPost } from '@api/post';
+import { useSelector } from 'react-redux';
 
 const ReactPost = ({ _id, react }) => {
     const { enqueueSnackbar } = useSnackbar();
-
+    
     const [arrayReact, setArrayReact] = useState(react);
-    const [_havedLogin, setHavedLogin] = useState(null);
+    const { havedLogin } = useSelector(state => state.posts);
     const [havedLike, setHavedLike] = useState(false);
 
     useEffect(() => {
-        setHavedLogin(Boolean(havedLogin()));
         setHavedLike(checkHavedLike());
-    }, []) // do post/[slug].jsx là SSR nên phải getLocalStogare kiểu này, không checkLogin lúc init state được
+    }, [])
 
     useEffect(() => {
         setHavedLike(checkHavedLike());
-    }, [arrayReact]);
+    }, [arrayReact, havedLogin]);
 
     function checkHavedLike() {
         const userId = getMetaAccount() ? getMetaAccount()._id : null;
@@ -27,7 +27,7 @@ const ReactPost = ({ _id, react }) => {
     }
 
     const reactAction = () => {
-        if (_havedLogin === false) {
+        if (havedLogin === false) {
             enqueueSnackbar("Bạn cần đăng nhập để like!")
             return;
         }

@@ -11,7 +11,8 @@ import { makeStyles } from '@mui/styles';
 import { getUserByUsername } from '@api/user';
 import { TabContext, TabList, TabPanel } from '@mui/lab';
 import { Box } from '@material-ui/core';
-
+import { COOKIE } from '@/config';
+import cookies from 'next-cookies';
 
 const useStyles = makeStyles(() => ({
     wrappertabLists: {
@@ -32,30 +33,46 @@ const styles = {
     tabs: { color: 'white', fontWeight: "bold" }
 }
 
-const menuItems = [
-    {
-        label: 'Thông tin tài khoản',
-        tabContent(user) { return <PersonalInfor user={user} /> }
-    },
-    {
-        label: 'Bài viết đã đăng',
-        tabContent(user) { return <MyTopics user={user} /> }
-    },
-    {
-        label: 'Bài viết đã lưu',
-        tabContent(user) { return <TopicsSaved user={user} /> }
-    }
-]
 
 const Profile = (props) => {
     const classes = useStyles();
-    const { user } = props;
+    const { user, usernameLoggedIn, userIdLoggedIn } = props;
 
     const [tabIndex, setTabIndex] = useState('0');
 
     const handleChange = (event, newValue) => {
         setTabIndex(newValue);
     };
+
+    const isViewMyProfilePage = () => {
+        return usernameLoggedIn === user.username;
+    }
+
+    const menuItems = [
+        {
+            id: "PROFILE_INFO",
+            label: 'Thông tin tài khoản',
+            tabContent(user) {
+                return <PersonalInfor
+                    isViewMyProfilePage={isViewMyProfilePage()}
+                    user={user}
+                    userIdLoggedIn={userIdLoggedIn}
+                />
+            }
+        },
+        {
+            id: "POSTED_TOPIC",
+            label: 'Bài viết đã đăng',
+            tabContent(user) { return <MyTopics user={user} /> }
+        },
+        {
+            id: "SAVED_TOPIC",
+            label: 'Bài viết đã lưu',
+            tabContent(user) { return <TopicsSaved user={user} /> }
+        }
+    ]
+
+    const menuItemsRender = menuItems.filter(item => isViewMyProfilePage() ? item : item.id != "SAVED_TOPIC");
 
     return (
         <>
@@ -67,10 +84,10 @@ const Profile = (props) => {
                     <TabContext value={tabIndex}>
                         <Box>
                             <TabList onChange={handleChange} className={classes.wrappertabLists} >
-                                {menuItems.map((item, tabIndex) => <Tab key={tabIndex} classes={{ selected: classes.selectedTab, root: classes.rootTab }} label={item.label} value={tabIndex.toString()} />)}
+                                {menuItemsRender.map((item, tabIndex) => <Tab key={tabIndex} classes={{ selected: classes.selectedTab, root: classes.rootTab }} label={item.label} value={tabIndex.toString()} />)}
                             </TabList>
                         </Box>
-                        {menuItems.map((item, tabIndex) => <TabPanel key={tabIndex} value={tabIndex.toString()}>{item.tabContent(user)}</TabPanel>)}
+                        {menuItemsRender.map((item, tabIndex) => <TabPanel key={tabIndex} value={tabIndex.toString()}>{item.tabContent(user)}</TabPanel>)}
                     </TabContext>
                 </Box>
             </WebLayout>
@@ -82,8 +99,14 @@ Profile.getInitialProps = async (ctx) => {
     const { username } = ctx.query;
 
     const user = await getUserByUsername(username);
-
-    return { user };
+    if (!user) {
+        ctx.res.writeHead(307, { Location: '/404-not-found' });
+        ctx.res.end();
+    }
+    const allCookies = cookies(ctx);
+    const usernameLoggedIn = allCookies[COOKIE.META_USER.USERNAME];
+    const userIdLoggedIn = allCookies[COOKIE.META_USER.USERID];
+    return { user, usernameLoggedIn, userIdLoggedIn };
 }
 
 export default Profile

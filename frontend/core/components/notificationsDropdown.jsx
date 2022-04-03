@@ -13,7 +13,7 @@ import { Badge, IconButton } from '@mui/material';
 import styles from '@styles/header.module.scss';
 import Scrollbars from 'react-custom-scrollbars-2';
 import { getNotifications } from '@api/user';
-import { readNotification } from '@api/notification'
+import { readNotification, readAllNotification } from '@api/notification'
 import { getMetaAccount, havedLogin } from "@/helper/account";
 import { API_URL, SITE_URL } from '@/config';
 import { timeDifference } from '@/helper/dateFormat';
@@ -24,11 +24,19 @@ import router from 'next/router';
 import { useSnackbar } from 'notistack';
 import MoreHorizOutlinedIcon from '@mui/icons-material/MoreHorizOutlined';
 import ListItemButton from '@mui/material/ListItemButton';
-import ListItemIcon from '@mui/material/ListItemIcon';
 import DoneOutlineRoundedIcon from '@mui/icons-material/DoneOutlineRounded';
-import DeleteForeverOutlinedIcon from '@mui/icons-material/DeleteForeverOutlined';
+import Button from '@mui/material/Button';
+import Stack from '@mui/material/Stack';
+import DoneAllRoundedIcon from '@mui/icons-material/DoneAllRounded';
+
+import { useSelector, useDispatch } from 'react-redux';
+import { fetchNotifications, markReadItem, markAllNotifAsRead, appendNotif } from '@/reduxTookit/slices/notificationsSlice'
 
 const widthPanel = 360;
+const readColor = {
+    read: "#919090",
+    unread: "#ffffff",
+}
 
 const useStyles = makeStyles((theme) => ({
     parent: {
@@ -41,6 +49,12 @@ const useStyles = makeStyles((theme) => ({
         width: widthPanel,
         maxHeight: 400,
     },
+    list: {
+        width: '100%',
+        maxWidth: widthPanel,
+        borderRadius: '5px',
+        border: '1px solid #4f4e4d',
+    },
     listItem: {
         '&:hover': {
             backgroundColor: 'rgba(169, 167, 167, 0.16)',
@@ -48,17 +62,20 @@ const useStyles = makeStyles((theme) => ({
         cursor: 'pointer',
         display: 'flex',
         alignItems: 'center',
-        color: "#dbd7d7"
+        color: "#dbd7d7",
     },
     dotCircle: {
         height: '12px',
         width: '12px',
         backgroundColor: '#ffffff',
+        backgroundClip: 'content-box',
         borderRadius: '50%',
-        marginLeft: "15px"
+        marginLeft: "15px",
+        boxSizing: "content-box",
+        padding: "6px",
     },
     content: {
-        width: '72%'
+        width: '72%',
     },
     username: {
         display: 'inline',
@@ -67,23 +84,42 @@ const useStyles = makeStyles((theme) => ({
     },
     actionName: {
         display: 'inline',
-        marginRight: '2px'
+        marginRight: '2px',
     },
     optionBtn: {
         width: '40px',
-        height: '40px'
+        height: '40px',
     },
     optionList: {
-        position: "relative"
+        position: "relative",
     },
     panelOption: {
+        maxWidth: 360,
         position: 'absolute',
         width: "250px",
         zIndex: 99999,
         right: 0,
         borderRadius: '5px',
-        border: '1px solid #4f4e4d'
+        border: '1px solid #4f4e4d',
     },
+    markAllAsRead: {
+        display: 'flex',
+        justifyContent: "center",
+        marginTop: "10px",
+    },
+    hiddenMarkAllAsRead: {
+        display: 'none'
+    },
+    btnMarkAllAsRead: {
+        textTransform: 'lowercase',
+        color: 'white'
+    },
+    emtyMessage: {
+        display: 'flex',
+        marginTop: '50px',
+        justifyContent: "center",
+        alignItems: "center",
+    }
 }));
 
 const getActionLable = type => {
@@ -102,22 +138,26 @@ const NotifiyItem = ({ notify }) => {
     const { enqueueSnackbar } = useSnackbar();
     const { _id, source, destination, type, createdAt, isRead } = notify;
 
-    const [havedRead, setHavedRead] = useState(isRead);
     const [isShowOptionBtn, setShowOptionBtn] = useState(false);
     const [isShowOptionList, setShowOptionList] = useState(false);
+
+    const dispatch = useDispatch();
 
     const handleReadNotification = (id, isRedirect) => {
         readNotification(id)
             .then(() => {
-                setHavedRead(true);
+                dispatch(markReadItem(id));
                 if (isRedirect) {
+                    dispatch(markReadItem(id));
                     router.push(`${SITE_URL}/post/${destination.object._id}`);
                 }
             })
-            .catch(() => {
+            .catch(err => {
+                console.log(err);
                 enqueueSnackbar("Lỗi đọc thông báo, vui lòng thử lại sau")
             })
     }
+
 
     const handleMouseEnterItem = () => {
         setShowOptionBtn(true);
@@ -133,7 +173,7 @@ const NotifiyItem = ({ notify }) => {
                 className={classes.listItem}
                 key={_id}
                 alignItems="flex-start"
-                style={{ color: havedRead ? "#dbd7d7" : "#ffffff" }}
+                style={{ color: isRead ? readColor.read : readColor.unread }}
                 onClick={() => handleReadNotification(_id, true)}
                 onMouseEnter={() => handleMouseEnterItem()}
                 onMouseLeave={() => handleMouseLeaveItem()}
@@ -161,12 +201,12 @@ const NotifiyItem = ({ notify }) => {
                 <Typography
                     className={classes.dotCircle}
                     component="div"
-                    style={{ display: havedRead ? "none" : (isShowOptionBtn ? "none" : "block") }}
+                    style={{ display: isRead ? "none" : (isShowOptionBtn ? "none" : "block") }}
                 >
                 </Typography>
                 <Typography
-                    style={{ display: havedRead ? "none" : (isShowOptionBtn ? "block" : "none") }}
                     className={classes.optionList}
+                    style={{ display: isRead ? "none" : (isShowOptionBtn ? "block" : "none") }}
                 >
                     <IconButton
                         color="inherit"
@@ -178,15 +218,18 @@ const NotifiyItem = ({ notify }) => {
                     {isShowOptionList && (
                         <Box
                             className={classes.panelOption}
-                            sx={{ width: '100%', maxWidth: 360, bgcolor: 'background.paper' }}
+                            sx={{ bgcolor: 'background.paper' }}
                         >
                             <List>
                                 <ListItem disablePadding>
                                     <ListItemButton onClick={event => { event.stopPropagation(); handleReadNotification(_id, false) }}>
-                                        <ListItemIcon>
+                                        <Stack
+                                            direction="row"
+                                            justifyContent="flex-start"
+                                            spacing={1}>
                                             <DoneOutlineRoundedIcon />
-                                        </ListItemIcon>
-                                        <ListItemText primary="Đánh dấu là đã đọc" />
+                                            <ListItemText primary="Đánh dấu là đã đọc" />
+                                        </Stack>
                                     </ListItemButton>
                                 </ListItem>
                             </List>
@@ -200,9 +243,11 @@ const NotifiyItem = ({ notify }) => {
 
 const NotificationsPopup = () => {
     const classes = useStyles();
+    const { enqueueSnackbar } = useSnackbar();
 
     const [isShowPanel, setShowPanel] = useState(false);
-    const [notifications, setNotifications] = useState([]);
+    const { notifications } = useSelector(state => state);
+    const dispatch = useDispatch();
 
     let socketInstance;
 
@@ -211,7 +256,7 @@ const NotificationsPopup = () => {
             const { _id: userId } = getMetaAccount();
             getNotifications(userId).then(payload => {
 
-                setNotifications(payload);
+                dispatch(fetchNotifications(payload))
                 if (socketInstance === undefined) {
                     socketInstance = io(env.GATEWAY_URL);
 
@@ -225,8 +270,19 @@ const NotificationsPopup = () => {
 
     const listenNotify = () => {
         socketInstance.on('notify', event => {
-            setNotifications(_.concat([event.notification], notifications));
+            const { _id: userId } = getMetaAccount();
+            if (userId != event.notification.source.object._id) {
+                dispatch(appendNotif(event.notification))
+            }
         });
+    }
+
+    const handleReadAllNotification = () => {
+        readAllNotification()
+            .then(() => {
+                dispatch(markAllNotifAsRead());
+            })
+            .catch((err) => { enqueueSnackbar("Lỗi, vui lòng thử lại") })
     }
 
     return (
@@ -244,14 +300,49 @@ const NotificationsPopup = () => {
                 </Badge>
             </IconButton>
             <Box className={classes.panel} style={{ display: isShowPanel ? 'inline-block' : 'none' }}>
-                <List sx={{ width: '100%', maxWidth: widthPanel, bgcolor: 'background.paper', borderRadius: '5px' }}>
+                <List
+                    sx={{ bgcolor: 'background.paper' }}
+                    className={classes.list}
+                >
                     <Scrollbars style={{ height: '500px', width: '100%' }}>
-                        {notifications.map(notify =>
-                            <NotifiyItem notify={notify} />)}
+                        {notifications.length > 0 ?
+                            notifications.map(notify =>
+                                <NotifiyItem notify={notify} />)
+                            : <Typography
+                                className={classes.emtyMessage}
+                                component="span">
+                                Hiện tại chưa có thông báo!
+                            </Typography>
+                        }
                     </Scrollbars>
+                    <Typography
+                        style={notifications.some(notif => notif.isRead == false) ?
+                            {
+                                display: 'flex',
+                                justifyContent: "center",
+                                marginTop: "10px"
+                            } :
+                            { display: 'none' }
+                        }
+                        component="div">
+                        <Button
+                            onClick={handleReadAllNotification}
+                            className={classes.btnMarkAllAsRead}
+                            variant="text">
+                            <Stack
+                                direction="row"
+                                spacing={1}>
+                                <DoneAllRoundedIcon />
+                                <Typography
+                                    component="span">
+                                    Đánh dấu tất cả là đã đọc
+                                </Typography>
+                            </Stack>
+                        </Button>
+                    </Typography>
                 </List>
             </Box>
-        </Typography>
+        </Typography >
     )
 }
 

@@ -13,7 +13,7 @@ export function createPost(params) {
             }
         }).then(response => {
             const { data } = response;
-            
+            console.log("HIHIH", data)
             resolve(data);
         }).catch(error => reject(error))
     })
@@ -21,9 +21,9 @@ export function createPost(params) {
 
 export function getPosts() {
     return new Promise((resolve, reject) => {
-        axios.get(`${API_URL}/post`) .then(response => {
+        axios.get(`${API_URL}/post`).then(response => {
             const { data } = response;
-            
+
             resolve(data);
         }).catch(error => reject(error));
     })
@@ -31,9 +31,9 @@ export function getPosts() {
 
 export function getPost(slug) {
     return new Promise((resolve, reject) => {
-        axios.get(`${API_URL}/post/content/${slug}`) .then(response => {
+        axios.get(`${API_URL}/post/content/${slug}`).then(response => {
             const { data } = response;
-            
+
             resolve(data);
         }).catch(error => reject(error));
     });
@@ -46,105 +46,105 @@ export function getPostByUser(userId) {
         axios.get(`${API_URL}/post/user/${userId}`).then(response => {
             const { statusCode } = response.data;
 
-            if(statusCode == 401) {
+            if (statusCode == 401) {
                 resolve(null);
             }
-            else { 
+            else {
                 resolve(response.data)
             }
-            
+
             resolve(data);
         }).catch(error => reject(error))
     })
 }
 
-export function reactPost(id ) { 
+export function reactPost(id) {
     return new Promise((resolve, reject) => {
         const token = havedLogin();
 
-        axios.post(`${API_URL}/post/react/${id}`, {},  {
+        axios.post(`${API_URL}/post/react/${id}`, {}, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         }).then(response => {
             const { statusCode } = response.data;
 
-            if(statusCode == 401) {
+            if (statusCode == 401) {
                 resolve(null);
             }
-            else { 
+            else {
                 resolve(response.data)
             }
-            
+
             resolve(data);
         }).catch(error => reject(error))
     })
 }
 
-export function unReactPost(id ) { 
+export function unReactPost(id) {
     return new Promise((resolve, reject) => {
         const token = havedLogin();
 
-        axios.post(`${API_URL}/post/unreact/${id}`, {},  {
+        axios.post(`${API_URL}/post/unreact/${id}`, {}, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         }).then(response => {
             const { statusCode } = response.data;
 
-            if(statusCode == 401) {
+            if (statusCode == 401) {
                 resolve(null);
             }
-            else { 
+            else {
                 resolve(response.data)
             }
-            
+
             resolve(data);
         }).catch(error => reject(error))
     })
 }
 
-export function savePost(id ) { 
+export function savePost(id) {
     return new Promise((resolve, reject) => {
         const token = havedLogin();
 
-        axios.post(`${API_URL}/post/save/${id}`, {},  {
+        axios.post(`${API_URL}/post/save/${id}`, {}, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         }).then(response => {
             const { statusCode } = response.data;
 
-            if(statusCode == 401) {
+            if (statusCode == 401) {
                 resolve(null);
             }
-            else { 
+            else {
                 resolve(response.data)
             }
-            
+
             resolve(data);
         }).catch(error => reject(error))
     })
 }
 
-export function unSavePost(id ) { 
+export function unSavePost(id) {
     return new Promise((resolve, reject) => {
         const token = havedLogin();
 
-        axios.post(`${API_URL}/post/unsave/${id}`, {},  {
+        axios.post(`${API_URL}/post/unsave/${id}`, {}, {
             headers: {
                 "Authorization": `Bearer ${token}`
             }
         }).then(response => {
             const { statusCode } = response.data;
 
-            if(statusCode == 401) {
+            if (statusCode == 401) {
                 resolve(null);
             }
-            else { 
+            else {
                 resolve(response.data)
             }
-            
+
             resolve(data);
         }).catch(error => reject(error))
     })
@@ -152,9 +152,9 @@ export function unSavePost(id ) {
 
 export function getCommentsPost(postId) {
     return new Promise((resolve, reject) => {
-        axios.get(`${API_URL}/post/comment/post/${postId}`) .then(response => {
+        axios.get(`${API_URL}/post/comment/post/${postId}`).then(response => {
             const { data } = response;
-            
+
             resolve(data);
         }).catch(error => reject(error));
     });
@@ -171,7 +171,7 @@ export function commentPost(postId, params) {
             }
         }).then(response => {
             const { data } = response;
-            
+
             resolve(data);
         }).catch(error => reject(error))
     })

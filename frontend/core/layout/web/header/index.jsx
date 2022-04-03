@@ -6,7 +6,7 @@ import { makeStyles } from '@mui/styles';
 import Link from 'next/link';
 import { useSnackbar } from 'notistack';
 import React, { useEffect, useRef, useState } from 'react';
-import { API_URL, MOBILE_WIDTH_MAXIMUM, PAGE_TAB } from '../../../config';
+import { API_URL, MOBILE_WIDTH_MAXIMUM, PAGE_TAB } from '@/config';
 import styles from '@styles/header.module.scss';
 import Login from './login';
 import RightMenuHeader from './menu';
@@ -34,7 +34,7 @@ const Header = props => {
     const postForm = useRef();
 
     const [screenWidth, setScreenWidth] = useState(1024);
-    const [meInformation, setMeinformation] = useState(null);
+    const [meInformation, setMeInformation] = useState(null);
     const [pageTab, setPageTab] = useState(PAGE_TAB.HOME);
 
     const handleMenu = event => {
@@ -59,7 +59,7 @@ const Header = props => {
 
     const requestMeInformation = () => {
         me().then(payload => {
-            setMeinformation(payload);
+            setMeInformation(payload);
         });
     }
 
@@ -100,7 +100,7 @@ const Header = props => {
 
                         <div className={styles.grow} />
 
-                        {meInformation != null &&
+                        {meInformation &&
                             <Stack spacing={1} direction='row' justifyContent='center' alignContent='center'>
                                 <Chip
                                     component="a"

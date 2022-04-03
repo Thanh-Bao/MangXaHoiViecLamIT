@@ -1,5 +1,5 @@
 {
-  "name": "bao-bao",
+  "name": "web-gore-vn",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -19,6 +19,7 @@
     "@mui/material": "^5.0.2",
     "@mui/styles": "^5.0.1",
     "@mui/system": "^5.0.2",
+    "@reduxjs/toolkit": "^1.8.0",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
     "axios": "^0.21.4",
@@ -51,6 +52,7 @@
     "react-hook-form": "^7.15.3",
     "react-image-gallery": "^1.2.7",
     "react-jss": "8.1.0",
+    "react-redux": "^7.2.6",
     "react-share": "^4.4.0",
     "react-show-more-text": "^1.5.0",
     "react-tabs": "^3.2.2",

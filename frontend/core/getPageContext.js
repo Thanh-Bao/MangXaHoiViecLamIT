@@ -1,8 +1,7 @@
 import { SheetsRegistry } from 'jss';
 import { createMuiTheme } from '@mui/styles';
 import { createGenerateClassName } from '@material-ui/styles';
-import purple from '@material-ui/core/colors/purple';
-import green from '@material-ui/core/colors/green';
+import { purple, green } from '@material-ui/core/colors';
 
 // A theme with custom primary and secondary color.
 // It's optional.
@@ -18,6 +17,7 @@ const theme = createMuiTheme({
       main: green[500],
       dark: green[700],
     },
+
   },
   typography: {
     useNextVariants: true,

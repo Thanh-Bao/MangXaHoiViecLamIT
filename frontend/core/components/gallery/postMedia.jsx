@@ -8,6 +8,7 @@ import { useRouter } from 'next/router';
 import MediaPhotoPage from '@/pages/photo/[slug]';
 import { getPhoto } from '@api/media';
 import { useSnackbar } from 'notistack';
+import router from 'next/router';
 
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import NavigateBeforeIcon from '@mui/icons-material/NavigateBefore';

@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
 const PostCard = (props) => {
     const classes = useStyles();
 
-    const { _id, media, content, react, userSave } = props.post;
+    const { _id, media, content, react, userSave, comment } = props.post;
 
     return (
         <Card className={classes.contentWrapper}>
@@ -96,7 +96,7 @@ const PostCard = (props) => {
                                         <ModeComment />
                                     </Tooltip>
                                 </IconButton>
-                            </Link>
+                            </Link> {comment && comment.length > 0 ? comment.length : null}
                             
                             <SharePost post={props.post} />
                         </Stack>

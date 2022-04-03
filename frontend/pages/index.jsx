@@ -7,45 +7,28 @@ import { Grid } from '@mui/material';
 import { makeStyles } from '@mui/styles';
 import _ from 'lodash';
 import React, { useEffect, useState } from 'react';
+import ListPost from '@/components/ListPost';
+import { useDispatch } from 'react-redux';
+import { updateLoginStatus } from '@/reduxTookit/slices/postsIndexSlice';
+import { havedLogin } from "@/helper/account";
 
 const useStyles = makeStyles((theme) => ({
-   
+
 }));
 
 const Index = props => {
     const classes = useStyles();
-
-    const [loading, setLoading] = useState(true);
-    const [posts, setPosts] = useState([]);
+    const dispatch = useDispatch();
 
     useEffect(() => {
-        getPosts().then((data) => {
-            
-            setLoading(false);
-            setPosts(data);
-        })
-
-    }, [posts.length])
+        dispatch(updateLoginStatus(Boolean(havedLogin())));
+    }, [])
 
     return (
         <>
             <Head />
-
             <WebLayout>
-                <Grid container spacing={4}>
-                    {loading && _.range(24).map((item, key) => (
-                        <Grid item xs={12} sm={6} md={3} lg={3} xl={3} key={`grid-${key}`}>
-                            <PostSkeleton key={`item-${item}`} />
-                        </Grid>
-                    ))}
-
-                    {posts.map((item, key) => (
-                        <Grid item xs={12} sm={6} md={4} lg={4} xl={3} key={`grid-${key}`}>
-                            <PostCard post={item} key={`grid-${key}`} />
-                        </Grid>
-                    ))}
-
-                </Grid>
+                <ListPost />
             </WebLayout>
         </>
     )

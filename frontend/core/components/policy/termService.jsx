@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import {useState} from 'react'
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
@@ -21,26 +21,62 @@ const TermAndService = (props) => {
                 <DialogContent>
                     <DialogContentText
                     >
-
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Id porta nibh venenatis cras sed felis eget. Nisl rhoncus mattis rhoncus urna neque viverra justo nec. Pharetra et ultrices neque ornare aenean euismod elementum. Sociis natoque penatibus et magnis dis parturient montes. In hac habitasse platea dictumst. Senectus et netus et malesuada fames ac turpis egestas. Consectetur libero id faucibus nisl tincidunt eget nullam. In hac habitasse platea dictumst vestibulum rhoncus est. Nulla pellentesque dignissim enim sit amet venenatis urna cursus eget. Vehicula ipsum a arcu cursus vitae. Nulla porttitor massa id neque aliquam vestibulum morbi blandit cursus. Habitant morbi tristique senectus et netus et malesuada. Pharetra vel turpis nunc eget lorem dolor sed viverra. Lacus sed turpis tincidunt id aliquet risus feugiat in ante. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien.
-
-                        Luctus accumsan tortor posuere ac ut consequat semper viverra. Erat pellentesque adipiscing commodo elit. Congue quisque egestas diam in. Suspendisse potenti nullam ac tortor vitae purus. Elit duis tristique sollicitudin nibh sit amet commodo nulla. Ullamcorper a lacus vestibulum sed arcu non. Ac odio tempor orci dapibus ultrices in iaculis nunc. Tellus pellentesque eu tincidunt tortor aliquam. Suspendisse faucibus interdum posuere lorem ipsum. Morbi leo urna molestie at elementum eu facilisis. Nunc mattis enim ut tellus elementum sagittis vitae et. Tempus imperdiet nulla malesuada pellentesque elit eget gravida cum. Orci sagittis eu volutpat odio facilisis mauris sit. Enim sed faucibus turpis in eu mi bibendum. Nam libero justo laoreet sit amet cursus. Sed pulvinar proin gravida hendrerit lectus a. Sollicitudin tempor id eu nisl. Morbi non arcu risus quis varius quam quisque id. Tellus cras adipiscing enim eu turpis egestas pretium aenean pharetra. Mauris a diam maecenas sed.
-
-                        Facilisi nullam vehicula ipsum a arcu cursus. Bibendum neque egestas congue quisque egestas diam. Duis ut diam quam nulla porttitor massa id neque. Porta non pulvinar neque laoreet suspendisse interdum consectetur. Nisi vitae suscipit tellus mauris a diam maecenas sed enim. Eget egestas purus viverra accumsan in nisl. Diam donec adipiscing tristique risus nec. Euismod quis viverra nibh cras pulvinar. Vitae purus faucibus ornare suspendisse sed nisi lacus. Habitant morbi tristique senectus et netus et. Habitant morbi tristique senectus et netus et malesuada fames ac. Quis hendrerit dolor magna eget est lorem ipsum dolor.
-
-                        Sed blandit libero volutpat sed cras ornare arcu dui. Quis eleifend quam adipiscing vitae proin. Tempor commodo ullamcorper a lacus vestibulum sed arcu non. Vitae congue mauris rhoncus aenean vel elit scelerisque mauris pellentesque. Commodo odio aenean sed adipiscing diam donec adipiscing tristique risus. Pretium aenean pharetra magna ac placerat vestibulum lectus mauris ultrices. Suspendisse sed nisi lacus sed viverra tellus. Ac feugiat sed lectus vestibulum mattis ullamcorper velit sed ullamcorper. Ac tincidunt vitae semper quis. Leo vel orci porta non pulvinar neque laoreet. Aliquam purus sit amet luctus venenatis lectus magna. Ut sem nulla pharetra diam sit amet. Posuere sollicitudin aliquam ultrices sagittis orci a scelerisque purus semper. In hendrerit gravida rutrum quisque non tellus orci ac. Tempus quam pellentesque nec nam aliquam sem. Lectus sit amet est placerat in egestas erat. Felis eget velit aliquet sagittis id consectetur purus. Lacus suspendisse faucibus interdum posuere lorem ipsum.
-
-                        Nisi quis eleifend quam adipiscing. Vitae congue eu consequat ac felis donec. Sapien eget mi proin sed. Eget dolor morbi non arcu risus quis varius quam. Sapien faucibus et molestie ac feugiat sed lectus. Sed id semper risus in hendrerit. Sapien eget mi proin sed. Id semper risus in hendrerit gravida rutrum quisque. Lectus proin nibh nisl condimentum id venenatis a condimentum vitae. Purus in mollis nunc sed id semper risus in. In hendrerit gravida rutrum quisque non. Consequat semper viverra nam libero justo. Nisl suscipit adipiscing bibendum est ultricies. Donec adipiscing tristique risus nec feugiat in. Posuere morbi leo urna molestie at elementum eu facilisis sed. Porttitor massa id neque aliquam vestibulum morbi blandit cursus risus. Scelerisque mauris pellentesque pulvinar pellentesque.
-
-                        Ante metus dictum at tempor commodo. Fermentum leo vel orci porta non pulvinar neque. Elit ullamcorper dignissim cras tincidunt lobortis feugiat vivamus. Aliquam purus sit amet luctus venenatis lectus. Semper risus in hendrerit gravida. In hendrerit gravida rutrum quisque non tellus orci ac. Nisl suscipit adipiscing bibendum est ultricies. Urna porttitor rhoncus dolor purus non enim praesent. Viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat. Euismod nisi porta lorem mollis aliquam. Id neque aliquam vestibulum morbi blandit. Netus et malesuada fames ac turpis egestas. Vitae aliquet nec ullamcorper sit. Habitant morbi tristique senectus et netus et malesuada. Dictum non consectetur a erat nam at. Proin gravida hendrerit lectus a. Neque ornare aenean euismod elementum nisi quis. Lectus vestibulum mattis ullamcorper velit sed ullamcorper.
-
-                        Consequat nisl vel pretium lectus quam id leo. Pulvinar neque laoreet suspendisse interdum. Etiam sit amet nisl purus. Vel turpis nunc eget lorem dolor sed viverra. Condimentum id venenatis a condimentum vitae sapien pellentesque. Sed nisi lacus sed viverra tellus. Justo donec enim diam vulputate ut pharetra sit amet aliquam. Lacus vestibulum sed arcu non odio. In arcu cursus euismod quis viverra nibh cras pulvinar. Aliquet nibh praesent tristique magna sit amet. Faucibus interdum posuere lorem ipsum dolor sit amet. Eu tincidunt tortor aliquam nulla facilisi cras. Facilisis magna etiam tempor orci eu lobortis elementum nibh tellus. Vulputate dignissim suspendisse in est ante. Tincidunt ornare massa eget egestas. Sed risus ultricies tristique nulla aliquet enim.
-
-                        Rhoncus aenean vel elit scelerisque mauris pellentesque. Id neque aliquam vestibulum morbi blandit cursus risus at. Convallis aenean et tortor at. Mi in nulla posuere sollicitudin aliquam ultrices sagittis. Tellus at urna condimentum mattis. Aenean pharetra magna ac placerat vestibulum lectus. Dolor sed viverra ipsum nunc aliquet bibendum. Eget nunc lobortis mattis aliquam. Ornare massa eget egestas purus viverra. Id ornare arcu odio ut. Pulvinar mattis nunc sed blandit. Interdum velit euismod in pellentesque massa placerat. Eu scelerisque felis imperdiet proin fermentum leo vel orci. Proin sed libero enim sed faucibus turpis in eu. Placerat in egestas erat imperdiet sed euismod. Ultrices dui sapien eget mi proin sed.
-
-                        Nulla facilisi cras fermentum odio eu feugiat pretium nibh. Felis eget nunc lobortis mattis aliquam. Diam donec adipiscing tristique risus nec. Adipiscing elit pellentesque habitant morbi tristique senectus et. Ac felis donec et odio pellentesque diam volutpat commodo. Placerat duis ultricies lacus sed turpis tincidunt id. In nibh mauris cursus mattis molestie a. Arcu risus quis varius quam quisque id diam vel. Eu turpis egestas pretium aenean pharetra magna. Lorem mollis aliquam ut porttitor leo. Tristique risus nec feugiat in fermentum. Mauris in aliquam sem fringilla ut morbi. Hendrerit gravida rutrum quisque non tellus orci ac. Pulvinar neque laoreet suspendisse interdum. Elementum nibh tellus molestie nunc. At volutpat diam ut venenatis. Eget egestas purus viverra accumsan. Bibendum ut tristique et egestas quis ipsum suspendisse ultrices. Urna nec tincidunt praesent semper feugiat nibh. Sodales neque sodales ut etiam sit amet nisl.
-
-                        Vel quam elementum pulvinar etiam non. Pellentesque habitant morbi tristique senectus et netus et. Non enim praesent elementum facilisis leo vel fringilla. Eu lobortis elementum nibh tellus. Quam vulputate dignissim suspendisse in est. Felis bibendum ut tristique et egestas quis ipsum. Vitae sapien pellentesque habitant morbi. Arcu bibendum at varius vel. Erat nam at lectus urna. Accumsan tortor posuere ac ut consequat semper viverra. Dui accumsan sit amet nulla facilisi. Rhoncus est pellentesque elit ullamcorper dignissim cras. Ultrices tincidunt arcu non sodales neque. Varius morbi enim nunc faucibus a pellentesque sit amet. Tellus orci ac auctor augue mauris augue neque gravida. Aliquam ultrices sagittis orci a. Sit amet aliquam id diam. Mauris vitae ultricies leo integer malesuada nunc vel risus commodo. Eu lobortis elementum nibh tellus molestie. Sollicitudin tempor id eu nisl nunc mi ipsum.
+                        <h3>Điều 1: Đối tượng thành viên tham gia</h3>
+                        GoreVN chỉ chấp nhận thành viên trên 18 tuổi, đủ năng lực hành vi dân sự. 
+                        Nếu bạn dưới 18 tuổi hoặc đang gặp các vấn đề về tâm lý vui lòng rời khỏi đây.
+                        <h3>Điều 2: Miễn trừ trách nhiệm</h3>
+                        GoreVN không chịu bất cứ trách nhiệm nào khi bạn truy cập website, chúng tôi không có trách nhiệm với mọi
+                        vấn đề phát sinh trong và sau khi bạn truy cập website này. Bạn phải hoàn toàn chịu trách nhiệm
+                        với mọi quyết định, hành vi và suy nghĩ của mình, Đồng thời bạn cũng phải tự chịu trách nhiệm
+                        khi chia sẻ link, hình ảnh, video của diễn đàn... lên mạng xã hội và các nền tảng internet khác.
+                        <h3>Điều 3: Chính sách bảo mật</h3>
+                        Chúng tôi cam kết không truy cập trái phép thông tin trên thiết bị của bạn, toàn bộ thông
+                        tin trên website đều do người dùng tự nguyện đăng tải và cung cấp. Toàn bộ dữ liệu được
+                        lưu trữ tại hệ thống của GoreVN hoàn toàn không chia sẻ với bên thứ ba.
+                        Trong trường hợp máy chủ lưu trữ thông tin bị hacker tấn công dẫn đến mất mát dữ liệu cá nhân thành viên,
+                        ban quản trị website sẽ có trách nhiệm thông báo vụ việc cho tất cả thành viên được biết.
+                        <h3>Điều 4: Quy định khi tạo bài viết mới, tham gia bình luận </h3>
+                        Tất cả các thông tin đăng lên phải tôn trọng các nguyên tắc chung sau:
+                        <ul>
+                            <li> PHẢI viết đúng văn hóa, chuẩn mực đạo đức. Không sử dụng ngôn ngữ teen.</li>
+                            <li>KHÔNG xúc phạm, kích động người khác.</li>
+                            <li>KHÔNG chia sẻ sách, tài liệu vi phạm bản quyền.</li>
+                            <li>KHÔNG viết về vấn đề chính trị, tôn giáo, phân biệt vùng miền.</li>
+                            <li> KHÔNG viết về các nội dung nhạy cảm, vi phạm thuần phong mỹ tục của Việt Nam.</li>
+                            <li> KHÔNG viết tục tiểu, đồi trụy, xúc phạm danh dự, phẩm chất, tinh thần đến nhà nước, tôn giáo và thành viên khác.</li>
+                        </ul>
+                        <h3>Điều 5: Quy định về cách đặt tên tài khoản khi đăng kí thành viên</h3>
+                        Chọn tên rõ ràng, có ý nghĩa. Tên có thể là tên thật, biệt danh hoặc một chuỗi kí tự có ý nghĩa không vi phạm các quy tắc bên dưới.
+                        Không đặt tên gây nhầm lẫn hoặc phiền toái:
+                        <ul>
+                            <li> Tên gây nhầm lẫn hoặc cố ý mạo danh thành viên đang sinh hoạt trong diễn đàn.</li>
+                            <li>  Tên sử dụng việc giống nhau giữa các kí tự trong cùng một font chữ (ví dụ như “I/l/1”, “O/o/0”…)</li>
+                            <li>  Tên có nội dung liên quan hoặc khiến người khác liên tưởng đến tên của các nhà chính trị, nhân vật hay sự kiện quân sự, tôn giáo.</li>
+                            <li>  Tên hoặc có ý ám chỉ đến những phần kín hay chức năng sinh sản hoặc bài tiết của cơ thể dưới mọi ngôn ngữ.</li>
+                            <li>  Tên gây nhầm lẫn hoặc cố ý mạo danh một tổ chức nào đó ngoài đời thực.</li>
+                            <li>  Nghiêm cấm đặt mọi tên có thể khiến người khác hiểu lầm hay liên tưởng tên đó có liên quan đến ban quản trị.</li>
+                            <li>   Không đặt tên gây kích động, quấy rối hoặc phỉ báng.</li>
+                            <li>   Tên có nội dung xúc phạm, khích bác đến người khác dưới bất kỳ hình thức nào.</li>
+                            <li>   Tên có nội dung liên quan đến các sự việc hay nội dung phản động, bài xích tôn giáo, khiêu dâm.</li>
+                            <li>   Tên của hình tượng hoặc nhân vật tôn giáo như “Trời”, “Chúa”, “Phật”, “Allah”… có thể xúc phạm đến niềm tin của người khác.</li>
+                            <li>  Tên đi ngược lại thuần phong mỹ tục hay truyền thống văn hóa Việt Nam.</li>
+                            <li>  Tên dùng cách viết sai chính tả hoặc dùng tên chế xuất phát từ các loại tên bên trên.</li>
+                            Khuyến khích tên viết tắt, ngắn ngọn, dễ hiểu.
+                        </ul>
+                        <h3>Điều 6: Phạm vi sử dụng và bản quyền</h3>
+                        Mọi dữ liệu, video, hình ảnh phải được sử dụng bên trong hệ thống diễn đàn GoreVN, GoreVN chỉ có một diễn đàn duy nhất
+                        với tên miền gorevn.com, mọi trang web khác đều là giả mạo, nghiêm cấm thành viên copy, sao chép nội dụng của diễn đàn
+                        để đăng tải lên nền tảng khác mà chưa có sự đồng ý.
+                        <h3> Điều 7: Khiếu nại</h3>
+                        Trong trường hợp người dùng phát hiện thông tin cá nhân bị
+                        sử dụng sai mục đích hoặc bị xâm phạm thì có thể gửi khiếu nại thông qua email của chúng tôi
+                        , chúng tôi sẽ dùng mọi biện pháp cần thiết để ngăn
+                        chặng không cho thông tin cá nhân đó bị tiếp tục xâm phạm, đồng thời có các biện pháp hỗ trợ
+                        để bảo vệ quyền và lợi ích của người dùng.Người dùng có quyền gửi khiếu nại về việc lộ
+                        thông tin cá nhân cho bên thứ 3 đến Ban quản trị của website. Khi tiếp nhận những phản hồi này,
+                        chúng tôi sẽ xác nhận lại thông tin, phải có trách nhiệm trả lời lý do và hướng dẫn thành viên
+                        khôi phục và bảo mật lại thông tin.
+                        
 
                     </DialogContentText>
                 </DialogContent>

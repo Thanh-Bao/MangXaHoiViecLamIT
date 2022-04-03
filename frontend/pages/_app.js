@@ -7,13 +7,13 @@ import theme from '@/theme';
 import '../styles/global.scss';
 import { SnackbarProvider } from 'notistack';
 import ConsentPolicy from '@/components/policy/consentPolicy';
-import Cookies from 'universal-cookie';
+import { havedAcceptPolicy } from '@/helper/handleCookie';
+import { store } from '@/reduxToolkit/store';
+import { Provider } from 'react-redux'
 
 export default function Application(props) {
     const { Component, pageProps } = props;
 
-    const cookies = new Cookies();
-    const consentPolicy = cookies.get('ACCEPT_POLICY');
 
     useEffect(() => {
         // Remove the server-side injected CSS.
@@ -26,14 +26,14 @@ export default function Application(props) {
     return (
         <React.Fragment>
             <Head>
-                <title>Tìm Việc Làm IT</title>
+                <title>GORE VN</title>
                 <meta
                     name="viewport"
                     content="minimum-scale=1, initial-scale=1, width=device-width, shrink-to-fit=no"
                 />
             </Head>
 
-            {consentPolicy ? null : <ConsentPolicy />}
+            {havedAcceptPolicy() ? null : <ConsentPolicy />}
 
             <ThemeProvider theme={theme}>
                 {/* CssBaseline kickstart an elegant, consistent, and simple baseline to build upon. */}
@@ -48,7 +48,9 @@ export default function Application(props) {
                 />
 
                 <SnackbarProvider maxSnack={1} anchorOrigin={{ horizontal: 'top', vertical: 'center' }}>
-                    <Component {...pageProps} />
+                    <Provider store={store}>
+                        <Component {...pageProps} />
+                    </Provider>
                 </SnackbarProvider>
             </ThemeProvider>
         </React.Fragment>

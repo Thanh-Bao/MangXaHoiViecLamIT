@@ -10,6 +10,9 @@ import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import TermAndService from "@/components/policy/termService";
 import Box from '@material-ui/core/Box';
+import { setMetaAccountCookie } from '@/helper/handleCookie';
+import { useDispatch } from 'react-redux';
+import { updateLoginStatus } from '@/reduxTookit/slices/postsIndexSlice';
 
 const useStyles = makeStyles(theme => ({
     titleLoginForm: {
@@ -52,6 +55,7 @@ const useStyles = makeStyles(theme => ({
 const Login = (props, ref) => {
     const { enqueueSnackbar } = useSnackbar();
     const styles = useStyles();
+    const dispatch = useDispatch();
 
     const { afterLogin = () => { } } = props;
 
@@ -169,6 +173,8 @@ const Login = (props, ref) => {
 
                     setShowErrorMessage("none");
                     enqueueSnackbar(MESSAGE.LOGIN_SUCCESS);
+                    setMetaAccountCookie(user);
+                    dispatch(updateLoginStatus(true));
                 }
                 else {
                     setShowErrorMessage("none");
@@ -182,7 +188,7 @@ const Login = (props, ref) => {
 
     const onSubmitRegister = (data) => {
         const errorMessage = validateRegister(data);
-        if (errorMessage){
+        if (errorMessage) {
             handlleShowErrorMessage(errorMessage);
         } else {
             setHandlingRequest(true);
@@ -196,6 +202,7 @@ const Login = (props, ref) => {
                 else {
                     setShowErrorMessage("none");
                     enqueueSnackbar(MESSAGE.USERNAME_EXISTS);
+
                 }
 
             }).catch(error => { handlleShowErrorMessage(MESSAGE.NETWORK_ERROR); })

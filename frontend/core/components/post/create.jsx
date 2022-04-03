@@ -13,13 +13,16 @@ import Scrollbars from 'react-custom-scrollbars-2';
 import UserPostCreatePortalCard from '../user/post/userPostCreatePortalCard';
 import PostCreateLoading from './create/loading';
 
+import { useDispatch } from 'react-redux';
+import { addPost } from '@/reduxTookit/slices/postsIndexSlice'
+
 const useStyles = makeStyles((theme) => ({
     titleCreatePost: {
         fontWeight: 'bold',
         textAlign: 'center'
     },
-    textEditor: { 
-        minHeight: "6em", 
+    textEditor: {
+        minHeight: "6em",
         cursor: "text",
         width: '500px',
     },
@@ -52,17 +55,18 @@ const useStyles = makeStyles((theme) => ({
 
 const PostCreate = (props, ref) => {
     const styles = useStyles();
-    const { me, afterLogin = () => {}  } = props;
+    const { me, afterLogin = () => { } } = props;
 
     const [open, setOpen] = useState(false);
-    const [editorState, setEditorState ] = useState(EditorState.createEmpty());
+    const [editorState, setEditorState] = useState(EditorState.createEmpty());
     const [handlingRequest, setHandlingRequest] = useState(false);
     const [fileUploads, setFileUploads] = useState([]);
     const [fileLoadings, setFileLoadings] = useState([]);
 
     const editorRef = useRef(null);
-    const userCard = useRef(null);    
+    const userCard = useRef(null);
     const loadingModal = useRef(null);
+    const dispatch = useDispatch();
 
     useImperativeHandle(ref, () => ({
         open: () => {
@@ -78,7 +82,7 @@ const PostCreate = (props, ref) => {
         const files = event.target.files;
         const filesName = _.map(Array.from(files), item => item.name);
 
-        setFileLoadings([ ...fileLoadings, filesName ]);
+        setFileLoadings([...fileLoadings, filesName]);
 
         const fileHaveUploaded = _.map(Array.from(files), file => {
             return new Promise((resolve, reject) => {
@@ -102,7 +106,7 @@ const PostCreate = (props, ref) => {
     const uploadPost = event => {
         setHandlingRequest(true);
         loadingModal.current.open();
-        
+
         const mediaId = _.map(fileUploads, item => item._id);
 
         const params = {
@@ -111,15 +115,17 @@ const PostCreate = (props, ref) => {
             isAnonymous: userCard.current.anonymous,
         }
         createPost(params).then(post => {
+            console.log(post)
             setEditorState(EditorState.push(editorState, ContentState.createFromText('')));
             setFileUploads([]);
             handleClose();
+            dispatch(addPost(post))
         }).finally(() => {
             setHandlingRequest(false);
             loadingModal.current.close();
         })
     }
-    
+
     return (
         <>
             <Dialog open={open} onClose={handleClose} classes={{ container: styles.dialog }}>
@@ -129,7 +135,7 @@ const PostCreate = (props, ref) => {
 
                     <br />
 
-                    <div className={styles.textEditor} onClick={focusEditor}> 
+                    <div className={styles.textEditor} onClick={focusEditor}>
                         <Editor
                             ref={editorRef}
                             editorState={editorState}
@@ -138,12 +144,12 @@ const PostCreate = (props, ref) => {
                         />
                     </div>
 
-                    {(fileUploads.length > 0 || fileLoadings.length > 0) && 
-                        <Scrollbars className={styles.wrapper} style={{ height: '225px',  width: '100%' }} universal={true}>
-                        
+                    {(fileUploads.length > 0 || fileLoadings.length > 0) &&
+                        <Scrollbars className={styles.wrapper} style={{ height: '225px', width: '100%' }} universal={true}>
+
                             <ImageList variant="masonry" cols={2} gap={8}>
                                 {fileUploads.map(item => (
-                                    
+
 
                                     <ImageListItem key={item._id}>
                                         <img
@@ -164,7 +170,7 @@ const PostCreate = (props, ref) => {
                             </ImageList>
                         </Scrollbars>
                     }
-                    
+
                     <div className={styles.actionPost} >
                         <Tooltip title='Hình ảnh/Video'>
                             <label htmlFor="icon-button-file">
@@ -179,20 +185,20 @@ const PostCreate = (props, ref) => {
                             Thêm hình ảnh/video
                         </Typography>
                     </div>
-                        
+
                     <div>
                         <LoadingButton
-                            onClick={uploadPost} 
-                            disabled={(!(editorState.getCurrentContent().hasText() && editorState.getCurrentContent().getPlainText().length > 0) || fileUploads.length == 0 || fileLoadings > 0 || handlingRequest == true)} 
+                            onClick={uploadPost}
+                            disabled={(!(editorState.getCurrentContent().hasText() && editorState.getCurrentContent().getPlainText().length > 0) || fileUploads.length == 0 || fileLoadings > 0 || handlingRequest == true)}
                             loadingPosition="start"
                             loading={handlingRequest}
                             className={styles.buttonUpload}
-                            classes={{ 
+                            classes={{
                                 root: styles.uploadPost,
                                 disabled: styles.disabledUploadPost
-                            }}> 
+                            }}>
                             Đăng bài
-                        </LoadingButton> 
+                        </LoadingButton>
                     </div>
                 </DialogContent>
             </Dialog>

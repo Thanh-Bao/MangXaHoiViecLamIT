@@ -12,10 +12,10 @@ import FormControl from '@mui/material/FormControl';
 import FormGroup from '@mui/material/FormGroup';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import Checkbox from '@mui/material/Checkbox';
-import Cookies from 'universal-cookie';
 import Tooltip from '@mui/material/Tooltip';
 import { color } from "@mui/system";
 import TermAndService from "@/components/policy/termService";
+import { acceptPolicy } from '@/helper/handleCookie';
 
 const options = [
     {
@@ -24,11 +24,11 @@ const options = [
     },
     {
         policyId: 2,
-        label: 'Đồng ý tsdbgi fgiig gsdgds '
+        label: 'Đồng ý xem nội dung kinh dị, máu me.'
     },
     {
         policyId: 3,
-        label: 'Quy định gnsdsdisidsdfsd.'
+        label: 'Xác nhận bạn đã trên 18 tuổi.'
     },
     {
         policyId: 4,
@@ -36,7 +36,7 @@ const options = [
     },
     {
         policyId: 5,
-        label: 's sdfsdfsd sdfsd sdf '
+        label: ''
     },
 ];
 
@@ -84,9 +84,9 @@ const ConsentPolicy = () => {
         setTotal(totalPrice);
         console.log(total)
     };
-    const cookies = new Cookies();
+
     const handleOk = () => {
-        cookies.set('ACCEPT_POLICY', true, { path: '/', expires: new Date(Date.now() + 30 * 24 * 60 * 50000) }); // thời hạn 30 ngày
+        acceptPolicy();
         setOpen(false);
     };
 

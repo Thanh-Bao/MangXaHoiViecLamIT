@@ -8,7 +8,8 @@
       "@api/*": ["core/api/*"],
       "@/pages/*": ["pages/*"],
       "@styles/*": ["styles/*"],
-      "@/*": ["core/*"]
+      "@/*": ["core/*"],
+      "@/reduxTookit/*": ["core/reduxToolkit/*"],
     },
     "module": "commonjs",
     "target": "es6"

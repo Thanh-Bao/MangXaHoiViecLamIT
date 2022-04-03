@@ -5,6 +5,7 @@ import PersonOutlineIcon from '@mui/icons-material/PersonOutline';
 import router, { useRouter } from 'next/router';
 import React from 'react';
 import Link from 'next/link';
+import { freeMetaAccountCookie } from '@/helper/handleCookie';
 
 class RightMenuHeader extends React.Component {
     state = {
@@ -23,6 +24,7 @@ class RightMenuHeader extends React.Component {
 
     handleLogout() {
         freeAccount();
+        freeMetaAccountCookie();
 
         if (this.props.afterLogout) {
             this.props.afterLogout();
