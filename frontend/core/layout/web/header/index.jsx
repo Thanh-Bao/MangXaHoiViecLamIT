@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     appBar: {
         zIndex: theme.zIndex.drawer + 1,
         boxShadow: 'none',
-        backgroundColor: '#242526',
+        backgroundColor: '#4267B2',
         borderBottom: '1px solid #383838'
     },
     toolbarHeader: {
@@ -120,7 +120,7 @@ const Header = props => {
                                     aria-label="Notification"
                                     className={styles.baseButton}
                                 >
-                                    <Badge color="secondary">
+                                    <Badge>
                                         <Telegram />
                                     </Badge>
                                 </IconButton>

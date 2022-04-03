@@ -51,7 +51,7 @@ const BookmarkPost = ({ _id, userSave, isShowNumberLeft }) => {
             {isShowNumberLeft && (arrayUserSave && arrayUserSave.length > 0 ? arrayUserSave.length : null)}
             <IconButton component="span" size='small' onClick={savePostAction}>
                 <Tooltip title={havedSave ? "Lưu lại" : "Bỏ lưu"} aria-label="share">
-                    {havedSave ? <Bookmark color='inherit' /> : <BookmarkBorder color='inherit' />}
+                    {havedSave ? <Bookmark color='primary' /> : <BookmarkBorder color='primary' />}
                 </Tooltip>
             </IconButton>
             {isShowNumberLeft ? null : (arrayUserSave && arrayUserSave.length > 0 ? arrayUserSave.length : null)}

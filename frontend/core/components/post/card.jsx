@@ -27,6 +27,10 @@ const useStyles = makeStyles((theme) => ({
     },
     contentWrapper: {
         backgroundColor: theme.article.contentWrapper.bgColor,
+        border: "1.5px solid #d4d4d4",
+        "&:hover": {
+            boxShadow: "#acaeb0 3px 8px 15px",
+        }
     },
     subheaderUserCard: {
         ...theme.subheaderUserCard,
@@ -57,7 +61,7 @@ const useStyles = makeStyles((theme) => ({
     },
     dividerAction: {
         borderColor: '#eaebed45'
-    }
+    },
 }));
 
 const PostCard = (props) => {
@@ -83,41 +87,29 @@ const PostCard = (props) => {
                 <Stack spacing={1} className={classes.content}>
                     <Divider />
 
-                    <Stack spacing={1} direction="row" justifyContent="space-between" alignItems="center">
+                    <Stack className={classes.iconAction} spacing={1} direction="row" justifyContent="space-between" alignItems="center">
                         <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={1}>
                             <ReactPost _id={_id} react={react} />
-                            
+
                             <Link href={{
                                 pathname: '/post/[slug]',
                                 query: { slug: _id }
                             }}>
                                 <IconButton component="span" size='small'>
                                     <Tooltip title='Bình luận' aria-label="comment">
-                                        <ModeComment />
+                                        <ModeComment color='primary' />
                                     </Tooltip>
                                 </IconButton>
                             </Link> {comment && comment.length > 0 ? comment.length : null}
-                            
+
                             <SharePost post={props.post} />
                         </Stack>
                         <Stack direction="row" alignItems="center" spacing={1}>
-                            <BookmarkPost _id={_id} userSave={userSave} isShowNumberLeft={true} />
+                            <BookmarkPost  _id={_id} userSave={userSave} isShowNumberLeft={true} />
                         </Stack>
                     </Stack>
                 </Stack>
             </Stack>
-
-            {/* <CardContent className={classes.mediaCounter}>
-                <Link href={{
-                    pathname: '/post/[slug]',
-                    query: { slug: _id }
-                }}>
-                    <Tooltip title="Xem toàn bộ hình">
-                        <Chip size='small' className={classes.mediaCount} avatar={<PhotoLibrary />} label={`${media.length < 5 ? media.length : `${roundToNearest5(media.length)}+`}`} />
-                    </Tooltip>
-                </Link>
-            </CardContent> */}
-
         </Card>
     );
 }

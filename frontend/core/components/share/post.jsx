@@ -25,7 +25,7 @@ const SharePost = props => {
         <>
             <IconButton component="span" size='small' onClick={handleCopy}>
                 <Tooltip title='Chia sẻ' aria-label="share">
-                    < Telegram className={classes.pointer} />
+                    < Telegram color='primary' className={classes.pointer} />
                 </Tooltip>
             </IconButton>
         </>

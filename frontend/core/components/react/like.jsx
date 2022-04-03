@@ -49,7 +49,7 @@ const ReactPost = ({ _id, react }) => {
     return (
         <>
             <IconButton component="span" size='small' onClick={reactAction}>
-                {havedLike ? <Favorite color='inherit' /> : <FavoriteBorder color='inherit' />}
+                {havedLike ? <Favorite color='primary' /> : <FavoriteBorder color='primary' />}
             </IconButton>   {arrayReact && arrayReact.length > 0 ? arrayReact.length : null}
         </>
     )

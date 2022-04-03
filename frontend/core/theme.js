@@ -4,7 +4,7 @@ import { red } from '@mui/material/colors';
 // Create a theme instance.
 const theme = createTheme({
     palette: {
-        mode: 'dark',    
+        // mode: 'dark',    
     },
     user: {
         card: {
@@ -16,7 +16,7 @@ const theme = createTheme({
     },
     article: {
         contentWrapper: {
-            bgColor: '#242526',
+            bgColor: "rgba(0,0,0,.048)",
             padding: '16px',
         },
     },
@@ -29,27 +29,27 @@ const theme = createTheme({
         }
     },
     seeMore: {
-        fontSize: 600, 
+        fontSize: 600,
     },
 });
 
 theme.typography.body2 = {
     fontSize: '.9375rem',
-    color: '#e4e6eb'
+    color: '#000000'
 };
 
 
 theme.typography.caption = {
-    color: '#e4e6eb'
+    color: '#000000'
 };
 
 theme.subheaderUserCard = {
-    color:  theme.typography.body2.color,
+    color: theme.typography.body2.color,
     fontSize: '.7rem',
 }
 theme.linkPost = {
     ...theme.subheaderUserCard,
-    textDecoration: 'none',    
+    textDecoration: 'none',
     '&:hover': {
         textDecoration: 'underline'
     },

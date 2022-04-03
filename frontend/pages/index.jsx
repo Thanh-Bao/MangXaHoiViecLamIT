@@ -28,6 +28,7 @@ const Index = props => {
         <>
             <Head />
             <WebLayout>
+                <br />
                 <ListPost />
             </WebLayout>
         </>
