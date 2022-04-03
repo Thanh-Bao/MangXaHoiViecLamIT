@@ -1,4 +1,4 @@
-package findJob;
+package live.itjob;
 
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.boot.web.servlet.support.SpringBootServletInitializer;
@@ -7,7 +7,7 @@ public class ServletInitializer extends SpringBootServletInitializer {
 
 	@Override
 	protected SpringApplicationBuilder configure(SpringApplicationBuilder application) {
-		return application.sources(FindJobApplication.class);
+		return application.sources(ItjobApplication.class);
 	}
 
 }
