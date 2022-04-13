@@ -10,6 +10,7 @@ import { API_URL, MOBILE_WIDTH_MAXIMUM, PAGE_TAB } from '@/config';
 import styles from '@styles/header.module.scss';
 import Login from './login';
 import RightMenuHeader from './menu';
+import Image from 'next/image'
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -84,7 +85,7 @@ const Header = props => {
                     <Toolbar className={classes.toolbarHeader}>
                         <Link href={`/`}>
                             <a>
-                                <img src="/logo.png" alt="logo" className={styles.logo} />
+                                <Image layout='fill' src="/logo.png" alt="logo" className={styles.logo} />
                             </a>
                         </Link>
 

@@ -16,6 +16,7 @@ import PostCreateLoading from './create/loading';
 import { useDispatch } from 'react-redux';
 import { addPost } from '@/reduxTookit/slices/postsIndexSlice'
 import { postMapper } from '@/helper/mapper';
+import Image from 'next/image'
 
 const useStyles = makeStyles((theme) => ({
     titleCreatePost: {
@@ -152,7 +153,8 @@ const PostCreate = (props, ref) => {
 
 
                                     <ImageListItem key={item}>
-                                        <img
+                                        <Image
+                                            layout='fill'
                                             src={`${API_URL}/images/${item}`}
                                             srcSet={`${API_URL}/images/${item}`}
                                             alt={item}
