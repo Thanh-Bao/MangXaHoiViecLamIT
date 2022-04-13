@@ -19,7 +19,6 @@
     "@mui/material": "^5.0.2",
     "@mui/styles": "^5.0.1",
     "@mui/system": "^5.0.2",
-    "@next/env": "^12.1.5",
     "@reduxjs/toolkit": "^1.8.0",
     "@zeit/next-less": "^1.0.1",
     "@zeit/next-sass": "^1.0.1",
