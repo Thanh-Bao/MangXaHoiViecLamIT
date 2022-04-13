@@ -1,14 +1,12 @@
-import login from '@/api/login';
-import registerAPI from '@/api/register';
+import { login } from '@/api/user';
+import { USERregister } from '@/api/user';
 import { setAccount } from '@/helper/account';
 import { LoadingButton } from '@mui/lab';
 import { Button, Dialog, DialogActions, DialogContent, DialogTitle, LinearProgress, TextField } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import Checkbox from '@mui/material/Checkbox';
 import { useSnackbar } from 'notistack';
 import React, { forwardRef, useImperativeHandle, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import TermAndService from "@/components/policy/termService";
 import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
@@ -45,8 +43,7 @@ const useStyles = makeStyles(theme => ({
     centerAlign: {
         display: 'flex',
         justifyContent: 'center'
-    },
-    TermAndService: { textTransform: 'none', color: 'blue', cursor: 'pointer', fontSize: '0.93em' }
+    }
 }))
 
 const Login = (props, ref) => {
@@ -61,10 +58,8 @@ const Login = (props, ref) => {
     const [handlingRequest, setHandlingRequest] = useState(false);
     const [actionLogin, setActionLogin] = useState(true);
 
-    const [openTerm, setOpenTerm] = useState(false);
     const [showErrorMessage, setShowErrorMessage] = useState('none');
     const [errorMessage, setErrorMessage] = useState(null);
-    const [acceptPolicy, setAcceptPolicy] = useState(false);
 
 
     const MESSAGE = {
@@ -78,21 +73,13 @@ const Login = (props, ref) => {
         REGISTER_FAILED: "Đăng ký thất bại, hãy kiểm tra lại",
         NETWORK_ERROR: "Lỗi server, vui lòng thử lại",
         POLICY_DENIED: "Bạn cần đồng ý điều khoản khi đăng ký",
-        USERNAME_EXISTS: "Tên tài khoản đã tồn tại",
+        USERNAME_EXISTS: "Tên tài khoản đã tồn tại trên hệ thống",
         PASSWORD_MATCH: "Mật khẩu không khớp",
         USERNAME_MIN: "Tài khoản tối thiểu 5 ký tự",
         USERNAME_MAX: "Tài khoản tối đa 20 ký tự",
         PASSWORD_MIN: "Mật khẩu tối thiểu 3 ký tự",
         PASSSORD_MAX: "Mật khẩu tối đa 50 ký tự"
     }
-
-
-
-    // this function passing to TermAndService component via props
-    const handleCloseTermAndService = () => {
-        setOpenTerm(false);
-    }
-
 
     useImperativeHandle(ref, () => ({
         open: () => {
@@ -142,63 +129,59 @@ const Login = (props, ref) => {
         if (data.password != data.confirmPassword) {
             error = MESSAGE.PASSWORD_MATCH;
         }
-        if (!acceptPolicy) {
-            error = MESSAGE.POLICY_DENIED;
-        }
         return error;
     }
 
     const onSubmitLogin = (data) => {
         if (!validateUsername(data.username)) {
-            enqueueSnackbar(MESSAGE.VALIDATE_INPUT.USERNAME);
+            enqueueSnackbar(MESSAGE.VALIDATE_INPUT.USERNAME, { variant: 'error' });
         } else if (!validatePassword(data.password)) {
-            enqueueSnackbar(MESSAGE.VALIDATE_INPUT.PASSWORD);
+            enqueueSnackbar(MESSAGE.VALIDATE_INPUT.PASSWORD, { variant: 'error' });
         } else {
             setHandlingRequest(true);
-            login(data).then(payload => {
-                const { statusCode, user, access_token } = payload;
-
-                if (statusCode != 401) {
+            login(data).then(user => {
+                const { access_token } = user;
+                if (access_token) {
                     setAccount(access_token, {
-                        _id: user._id,
-                        username: user.username
+                        _id: data.username,
+                        username: data.username
                     });
 
                     afterLogin();
                     handleClose();
 
                     setShowErrorMessage("none");
-                    enqueueSnackbar(MESSAGE.LOGIN_SUCCESS);
+                    enqueueSnackbar(MESSAGE.LOGIN_SUCCESS, { variant: 'success' });
                 }
                 else {
                     setShowErrorMessage("none");
-                    enqueueSnackbar(MESSAGE.LOGIN_FAILD);
+                    enqueueSnackbar("Sai username hoặc password", { variant: 'error' });
                 }
 
-            }).catch(error => { enqueueSnackbar(MESSAGE.LOGIN_FAILD); })
+            }).catch(error => { enqueueSnackbar("Sai username hoặc password", { variant: 'error' }); })
                 .finally(() => { setHandlingRequest(false) });
         }
     };
 
     const onSubmitRegister = (data) => {
         const errorMessage = validateRegister(data);
-        if (errorMessage){
+        if (errorMessage) {
             handlleShowErrorMessage(errorMessage);
         } else {
             setHandlingRequest(true);
 
-            registerAPI(data).then(userCreated => {
+            USERregister(data).then(userCreated => {
                 if (userCreated) {
                     setActionLogin(true);
                     setShowErrorMessage("none");
-                    enqueueSnackbar(MESSAGE.REGISTER_SUCCESS);
+                    enqueueSnackbar(MESSAGE.REGISTER_SUCCESS, { variant: 'success' });
                 }
                 else {
                     setShowErrorMessage("none");
-                    enqueueSnackbar(MESSAGE.USERNAME_EXISTS);
+                    enqueueSnackbar(MESSAGE.USERNAME_EXISTS, { variant: 'error' });
                 }
 
-            }).catch(error => { handlleShowErrorMessage(MESSAGE.NETWORK_ERROR); })
+            }).catch(error => { handlleShowErrorMessage(MESSAGE.USERNAME_EXISTS, { variant: 'error' }); })
                 .finally(() => { setHandlingRequest(false) });
         }
     };
@@ -292,7 +275,6 @@ const Login = (props, ref) => {
 
                             <DialogContent className={styles.wrapperLoginForm}>
                                 <TextField
-                                style={{color}}
                                     margin="dense"
                                     id="username"
                                     label="Tài khoản"
@@ -327,21 +309,6 @@ const Login = (props, ref) => {
                                         required: "required",
                                     })}
                                 />
-
-                                <div className={styles.centerAlign}>
-                                    <div>
-                                        <Checkbox
-                                            checked={acceptPolicy}
-                                            onChange={() => { setAcceptPolicy(!acceptPolicy) }}
-                                        />
-                                        Đồng ý các <b><span
-                                            onClick={() => setOpenTerm(true)}
-                                            className={styles.TermAndService}>
-                                            điều khoản & dịch vụ</span></b>
-                                    </div>
-                                </div>
-
-                                <TermAndService openTerm={openTerm} onCloseTermAndService={handleCloseTermAndService} />
 
                                 <LoadingButton
                                     type="submit"

@@ -15,6 +15,7 @@ import PostCreateLoading from './create/loading';
 
 import { useDispatch } from 'react-redux';
 import { addPost } from '@/reduxTookit/slices/postsIndexSlice'
+import { postMapper } from '@/helper/mapper';
 
 const useStyles = makeStyles((theme) => ({
     titleCreatePost: {
@@ -107,19 +108,18 @@ const PostCreate = (props, ref) => {
         setHandlingRequest(true);
         loadingModal.current.open();
 
-        const mediaId = _.map(fileUploads, item => item._id);
+        const mediaId = fileUploads.map(item => ({ link: item }));
 
         const params = {
-            content: editorState.getCurrentContent().getPlainText(),
-            media: mediaId,
-            isAnonymous: userCard.current.anonymous,
+            description: editorState.getCurrentContent().getPlainText(),
+            images: mediaId,
         }
         createPost(params).then(post => {
-            console.log(post)
             setEditorState(EditorState.push(editorState, ContentState.createFromText('')));
             setFileUploads([]);
             handleClose();
-            dispatch(addPost(post))
+            const data = postMapper(post);
+            dispatch(addPost(data))
         }).finally(() => {
             setHandlingRequest(false);
             loadingModal.current.close();
@@ -140,7 +140,7 @@ const PostCreate = (props, ref) => {
                             ref={editorRef}
                             editorState={editorState}
                             onChange={setEditorState}
-                            placeholder="Cảm ơn bạn vì đã đóng góp nội dung..."
+                            placeholder="Nội dung vài biết"
                         />
                     </div>
 
@@ -151,11 +151,11 @@ const PostCreate = (props, ref) => {
                                 {fileUploads.map(item => (
 
 
-                                    <ImageListItem key={item._id}>
+                                    <ImageListItem key={item}>
                                         <img
-                                            src={`${API_URL}${item.url}`}
-                                            srcSet={`${API_URL}${item.url}`}
-                                            alt={item.title}
+                                            src={`${API_URL}/images/${item}`}
+                                            srcSet={`${API_URL}/images/${item}`}
+                                            alt={item}
                                         />
                                     </ImageListItem>
                                 ))}
@@ -172,7 +172,7 @@ const PostCreate = (props, ref) => {
                     }
 
                     <div className={styles.actionPost} >
-                        <Tooltip title='Hình ảnh/Video'>
+                        <Tooltip title='thêm hình ảnh'>
                             <label htmlFor="icon-button-file">
                                 <Input id="icon-button-file" inputProps={{ multiple: true, accept: "image/*,video/*" }} type="file" className={styles.uploadMedia} onChange={uploadFiles} />
 
@@ -182,13 +182,14 @@ const PostCreate = (props, ref) => {
                             </label>
                         </Tooltip>
                         <Typography variant="button">
-                            Thêm hình ảnh/video
+                            Thêm hình ảnh
                         </Typography>
                     </div>
 
                     <div>
                         <LoadingButton
                             onClick={uploadPost}
+                            color="primary"
                             disabled={(!(editorState.getCurrentContent().hasText() && editorState.getCurrentContent().getPlainText().length > 0) || fileUploads.length == 0 || fileLoadings > 0 || handlingRequest == true)}
                             loadingPosition="start"
                             loading={handlingRequest}

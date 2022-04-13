@@ -45,16 +45,8 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const GalleryPostMedia = (props) => {
-    const classes = useStyles();
     const { maximage = -1 } = props;
     const media = [...props.media];
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-    const router = useRouter();
-    const { makeContextualHref, returnHref } = useContextualRouting();
-
-    const [photoSelection, setPhotoSelection] = useState(null);
-    const [openPhoto, setOpenPhoto] = useState(false);
-
 
     let cols = 2;
 
@@ -66,65 +58,7 @@ const GalleryPostMedia = (props) => {
             break;
     }
 
-    const handleClickPhoto = item => {
-        enqueueSnackbar('', {
-            content: <CircularProgress sx={{ color: '#e4e6eb' }} />
-        });
-
-        getPhoto(item._id).then(payload => {
-            closeSnackbar();
-            router.push(makeContextualHref({ id: item._id }), '/photo/' + item._id, { shallow: true });
-
-            setPhotoSelection(payload);
-            setOpenPhoto(true);
-        })
-    }
-
-    const handleClose = () => {
-        router.push(returnHref, undefined, { shallow: true });
-
-        setOpenPhoto(false);
-        setPhotoSelection(null);
-    }
-
-    const getNextImage = () => {
-        const currentImageIndex = _.findIndex(media, { _id: photoSelection._id });
-
-        if (currentImageIndex < (media.length - 1)) {
-            return media[currentImageIndex + 1];
-        }
-        else {
-            return null;
-        }
-    }
-
-    const getPrevImage = () => {
-        const currentImageIndex = _.findIndex(media, { _id: photoSelection._id });
-
-        if (currentImageIndex > 0) {
-            return media[currentImageIndex - 1];
-        }
-        else {
-            return null
-        }
-    }
-
-
-    const navigateImage = photoSelection == null ? <> </> : <Stack className={classes.wrapperHeader} direction="row" spacing={2}>
-        {getNextImage() != null && <NavigateNextIcon
-            className={classes.nextImg}
-            onClick={() => {
-                const nextImage = getNextImage();
-                handleClickPhoto(nextImage)
-            }}
-        />}
-        {getPrevImage() != null && <NavigateBeforeIcon
-            className={classes.prevImg}
-            onClick={() => { const prevImage = getPrevImage(); handleClickPhoto(prevImage) }}
-        />}
-    </Stack>;
-
-    const image = item => <ImageLoader item={item} handleClickPhoto={handleClickPhoto} />
+    const image = item => <ImageLoader item={item} />
 
     return (
         <>
@@ -144,19 +78,6 @@ const GalleryPostMedia = (props) => {
                         ))
                 }
             </ImageList>
-
-            <Dialog
-                open={openPhoto}
-                onClose={handleClose}
-                fullWidth={true}
-                maxWidth='xl'
-                className={classes.dialog}
-                PaperProps={{
-                    className: classes.rootDialog
-                }}
-            >
-                {photoSelection && <MediaPhotoPage onCloseImgDialog={handleClose} header={false} photo={photoSelection} navigateImage={navigateImage} />}
-            </Dialog>
         </>
     );
 }

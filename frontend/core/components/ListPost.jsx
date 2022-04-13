@@ -7,6 +7,7 @@ import React, { useEffect, useState } from 'react';
 
 import { useSelector, useDispatch } from 'react-redux';
 import { fetchPost } from '@/reduxTookit/slices/postsIndexSlice';
+import { postMapper } from '@/helper/mapper';
 
 const ListPost = props => {
 
@@ -15,7 +16,8 @@ const ListPost = props => {
     const dispatch = useDispatch();
 
     useEffect(() => {
-        getPosts().then((data) => {
+        getPosts().then(item => {
+            const data = item.map(postMapper)
             setLoading(false);
             dispatch(fetchPost(data))
         })

@@ -10,7 +10,6 @@ import { API_URL, MOBILE_WIDTH_MAXIMUM, PAGE_TAB } from '@/config';
 import styles from '@styles/header.module.scss';
 import Login from './login';
 import RightMenuHeader from './menu';
-import NotificationsDropdown from '@/components/notificationsDropdown'
 
 const useStyles = makeStyles(theme => ({
     appBar: {
@@ -83,14 +82,6 @@ const Header = props => {
             {MOBILE_WIDTH_MAXIMUM < screenWidth &&
                 <AppBar position="fixed" key='appbar-desktop' className={classes.appBar}>
                     <Toolbar className={classes.toolbarHeader}>
-                        <IconButton
-                            edge="start"
-                            color="inherit"
-                            aria-label="Open sidebar"
-                        >
-                            <Menu />
-                        </IconButton>
-
                         <Link href={`/`}>
                             <a>
                                 <img src="/logo.png" alt="logo" className={styles.logo} />
@@ -107,25 +98,13 @@ const Header = props => {
                                     href='/me'
                                     className={styles.meInfo}
                                     avatar={<Avatar alt={meInformation.username}
-                                        src={`${API_URL}${meInformation.avatar}`} />}
+                                        src={`${API_URL}/static/avatar.png`} />}
                                     label={meInformation.username}
                                 />
 
                                 <Button className={styles.buttonCreatePost} edge="end" startIcon={<AddToPhotos fontSize='small' />} size='medium' onClick={openPostForm} >
                                     Đăng bài
                                 </Button>
-
-                                <IconButton
-                                    color="inherit"
-                                    aria-label="Notification"
-                                    className={styles.baseButton}
-                                >
-                                    <Badge>
-                                        <Telegram />
-                                    </Badge>
-                                </IconButton>
-
-                                <NotificationsDropdown />
 
                                 <IconButton
                                     color="inherit"
@@ -167,7 +146,7 @@ const Header = props => {
                                         onClick={(event) => { handleMenu(event) }}
                                         className={styles.meInfo}
                                         avatar={<Avatar alt={meInformation.username}
-                                            src={`${API_URL}${meInformation.avatar}`} />}
+                                            src={`${API_URL}/static/avatar.png`} />}
                                         label={meInformation.username}
                                     />
                                 </>

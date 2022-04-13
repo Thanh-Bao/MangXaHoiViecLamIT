@@ -16,10 +16,6 @@ import WebLayout from '@/layout/web';
 import { commentPost, getCommentsPost, getPost } from '@/api/post';
 import UserPortalCard from '@/components/user/portalCard';
 import DotDivider from '@/components/dotDivider';
-import ReportTopic from '@/components/report/post';
-import CopyLinkToClipboard from '@/components/share/post';
-import ReactPost from '@/components/react/like';
-import BookmarkPost from '@/components/bookmark/bookmark';
 import GalleryPostMedia from '@/components/gallery/postMedia';
 import Box from '@mui/material/Box';
 
@@ -112,6 +108,7 @@ const Post = ({ article }) => {
                 title={`${user.username} - Bài viết `}
             />
             <WebLayout>
+                <br />
                 <Container maxWidth='lg'>
                     <Grid container spacing={3}>
                         <Grid item xs={12} sm={12} md={8} lg={8} xl={8} key='post'>
@@ -130,14 +127,11 @@ const Post = ({ article }) => {
                                             >
                                                 <Tooltip title={moment(createdAt).format('h:mm a DD-MM-YYYY')}><a className={classes.linkPost}>{moment(createdAt).format('DD [Thg] MM, YYYY')}</a></Tooltip>
                                             </Link>
-                                            <DotDivider /> {formatSpacingNumber(views)} lượt xem
+                                            <DotDivider />
                                         </>,
                                         action:
                                             <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={1}>
-                                                {/* comment */}
-                                                <CopyLinkToClipboard />
-                                                <BookmarkPost _id={_id} userSave={userSave} isShowNumberRight={false} />
-                                                <ReportTopic postId={_id} />
+
                                             </Stack>,
                                         classes: {
                                             root: classes.userCard
@@ -154,7 +148,7 @@ const Post = ({ article }) => {
                             <GalleryPostMedia media={media} maximage={-1} sx={{ height: 'auto' }} />
                             <Card>
                                 <Box ml={3} mt={3} mb={4} >
-                                    < ReactPost _id={_id} react={react} />
+                                    {/* ////////////// */}
                                 </Box>
                             </Card>
 

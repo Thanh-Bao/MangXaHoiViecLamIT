@@ -7,14 +7,13 @@ export function upload(formData) {
     return new Promise((resolve, reject) => {
         const token = havedLogin();
 
-        axios.post(`${API_URL}/media/upload`, formData, {
+        axios.post(`${API_URL}/api/v1/image/uploadFile`, formData, {
             headers: {
                 "Content-Type": "multipart/form-data",
                 "Authorization": `Bearer ${token}`
             }
         }).then(response => {
             const { data } = response;
-            
             resolve(data);
         }).catch(error => reject(error))
     })
@@ -22,10 +21,10 @@ export function upload(formData) {
 
 export function getPhoto(slug) {
     return new Promise((resolve, reject) => {
-        axios.get(`${API_URL}/post/photo/${slug}`) .then(response => {
+        axios.get(`${API_URL}/post/photo/${slug}`).then(response => {
             const { data } = response;
-            
+
             resolve(data);
-        }).catch(error => reject(error));        
+        }).catch(error => reject(error));
     })
 }

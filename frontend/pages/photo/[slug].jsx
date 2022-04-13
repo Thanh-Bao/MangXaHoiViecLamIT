@@ -1,7 +1,5 @@
 import PostUserCard from '@/components/post/userCard';
-import ReportPost from '@/components/report/post';
-import SharePost from '@/components/share/post';
-import { API_URL } from '@/config';
+import { SITE_URL, API_URL } from '@/config';
 import WebLayout from '@/layout/web';
 import Head from '@/layout/web/head';
 import { getPhoto } from '@api/media';
@@ -74,11 +72,10 @@ const MediaPhotoPage = (props) => {
                             <PostUserCard postLink='photo' post={photo} user={photo.user} />
                         </Grid>
                         <Grid item xs="auto">
-                            <Stack className={classes.wrapperHeader} direction="row" spacing={2}>
 
-                                <ReportPost postId={photo._id} />
-                                <SharePost />
-                            </Stack>
+                            {/* ///////////// */}
+                            {/* ///////////// */}
+                            {/* ///////////// */}
                         </Grid>
                     </Grid>
                     <Box className={classes.photoWrapper}>
@@ -87,7 +84,7 @@ const MediaPhotoPage = (props) => {
                                 objectFit: 'contain',
                                 backgroundColor: 'rgb(0 0 0)',
                             }}
-                            errorIcon={<img src={`${API_URL}/default/imageholder/404.jpg`} width="auto" height="auto" />}
+                            errorIcon={<img src={`${API_URL}/static/404.jpg`} width="auto" height="auto" />}
                             imageStyle={{
                                 width: "auto",
                                 maxWidth: "100%",

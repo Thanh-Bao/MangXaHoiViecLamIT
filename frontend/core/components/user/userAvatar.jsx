@@ -13,7 +13,7 @@ const UserAvatar = ({ user }) => {
     const classes = useStyles();
 
     return (
-        <AvatarMui className={classes.avatar} alt={user.username} src={`${API_URL}${user.avatar}`} />
+        <AvatarMui className={classes.avatar} alt={user.username} src={`${API_URL}/static/avatar.png`} />
     )
 }
 export default UserAvatar; 

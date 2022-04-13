@@ -7,9 +7,6 @@ import GalleryPostMedia from '../gallery/postMedia';
 import { PhotoLibrary, ModeComment } from '@mui/icons-material';
 import { roundToNearest5 } from '@/helper/roundNumber';
 import PostUserCard from './userCard';
-import SharePost from '../share/post';
-import ReactPost from '@/components/react/like';
-import BookmarkPost from '@/components/bookmark/bookmark';
 
 const useStyles = makeStyles((theme) => ({
     media: {
@@ -44,7 +41,10 @@ const useStyles = makeStyles((theme) => ({
     },
     mediaCount: {
         color: theme.typography.body2.color,
-        backgroundColor: theme.palette.primary.main,
+        backgroundColor: "##e8e8e8",
+        "&:hover" : {
+            backgroundColor: "#a6a6a6",
+        }
     },
     mediaWrapper: {
         margin: 0
@@ -67,15 +67,14 @@ const useStyles = makeStyles((theme) => ({
 const PostCard = (props) => {
     const classes = useStyles();
 
-    const { _id, media, content, react, userSave, comment } = props.post;
+    const { media, content } = props.post;
 
     return (
         <Card className={classes.contentWrapper}>
             <PostUserCard post={props.post} />
-
+            <Divider />
+            <br/>
             <Stack spacing={1}>
-                <GalleryPostMedia media={media} maximage={4} className={classes.mediaWrapper} />
-
                 <CardContent className={classes.content}>
                     <ShowMore>
                         <Typography variant="body2" fontSize={'14px'} component="p">
@@ -83,31 +82,20 @@ const PostCard = (props) => {
                         </Typography>
                     </ShowMore>
                 </CardContent>
-
+                <CardContent className={classes.mediaCounter}>
+                <Link 
+                href={{
+                    pathname: '/post/[slug]',
+                    query: { slug: "_id" }
+                }}
+                >
+                    <Tooltip title="Xem toàn bộ hình">
+                        <Chip size='small' className={classes.mediaCount} avatar={<PhotoLibrary />} label={`${media.length < 5 ? media.length : `${roundToNearest5(media.length)}+`}`} />
+                    </Tooltip>
+                </Link>
+            </CardContent>
+                <GalleryPostMedia media={media} maximage={4} className={classes.mediaWrapper} />
                 <Stack spacing={1} className={classes.content}>
-                    <Divider />
-
-                    <Stack className={classes.iconAction} spacing={1} direction="row" justifyContent="space-between" alignItems="center">
-                        <Stack direction="row" justifyContent="flex-start" alignItems="center" spacing={1}>
-                            <ReactPost _id={_id} react={react} />
-
-                            <Link href={{
-                                pathname: '/post/[slug]',
-                                query: { slug: _id }
-                            }}>
-                                <IconButton component="span" size='small'>
-                                    <Tooltip title='Bình luận' aria-label="comment">
-                                        <ModeComment color='primary' />
-                                    </Tooltip>
-                                </IconButton>
-                            </Link> {comment && comment.length > 0 ? comment.length : null}
-
-                            <SharePost post={props.post} />
-                        </Stack>
-                        <Stack direction="row" alignItems="center" spacing={1}>
-                            <BookmarkPost  _id={_id} userSave={userSave} isShowNumberLeft={true} />
-                        </Stack>
-                    </Stack>
                 </Stack>
             </Stack>
         </Card>
@@ -115,3 +103,4 @@ const PostCard = (props) => {
 }
 
 export default PostCard;
+

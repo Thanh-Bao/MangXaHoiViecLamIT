@@ -4,7 +4,6 @@ import Head from '@/layout/web/head';
 import WebLayout from '@/layout/web';
 import PersonalInfor from '@/components/profile/personalInfor';
 import MyTopics from '@/components/profile/myTopics';
-import TopicsSaved from '@/components/profile/topicsSaved';
 
 import { Tab } from '@mui/material';
 import { makeStyles } from '@mui/styles';
@@ -20,12 +19,13 @@ const useStyles = makeStyles(() => ({
         paddingLeft: 0
     },
     rootTab: {
-        color: '#e4e6eb66'
+        color: '#000000'
     },
 
     selectedTab: {
-        color: '#e4e6eb !important',
-        borderColor: '#e4e6eb !important'
+        color: '##000000 !important',
+        borderColor: '##000000 !important',
+        fontWeight: 900,
     }
 }))
 
@@ -65,11 +65,7 @@ const Profile = (props) => {
             label: 'Bài viết đã đăng',
             tabContent(user) { return <MyTopics user={user} /> }
         },
-        {
-            id: "SAVED_TOPIC",
-            label: 'Bài viết đã lưu',
-            tabContent(user) { return <TopicsSaved user={user} /> }
-        }
+
     ]
 
     const menuItemsRender = menuItems.filter(item => isViewMyProfilePage() ? item : item.id != "SAVED_TOPIC");

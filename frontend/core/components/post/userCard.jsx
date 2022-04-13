@@ -19,7 +19,7 @@ const useStyles = makeStyles((theme) => ({
         textDecoration: 'none',
     },
     linkPost: {
-        ...theme.linkPost, 
+        ...theme.linkPost,
         fontSize: '10.5px'
     }
 }));
@@ -40,8 +40,8 @@ const PostUserCard = (props) => {
                         pathname: `/${postLink}/[slug]`,
                         query: { slug: _id }
                     }}>
-                        <Tooltip title={moment(createdAt).format('HH:mm DD-MM-YYYY')}>
-                            <a className={classes.linkPost}>{moment(createdAt).format('DD [Thg] MM, YYYY')}<DotDivider />{formatSpacingNumber(views)} lượt xem </a> 
+                        <Tooltip title={moment.unix(createdAt).format('HH:mm DD-MM-YYYY')}>
+                            <a className={classes.linkPost}>{moment.unix(createdAt).format('DD [Thg] MM, YYYY')} </a>
                         </Tooltip>
                     </Link>
                 </>,
