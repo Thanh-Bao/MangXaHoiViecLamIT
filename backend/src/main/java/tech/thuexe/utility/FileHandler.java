@@ -32,7 +32,7 @@ public class FileHandler {
         UUID uuid = UUID.randomUUID();
         String uuidAsString = uuid.toString();
         String fileName = uuidAsString + "." + FilenameUtils.getExtension(originFileName);
-        File newFile = new File(URLImage + fileName);
+        File newFile = new File("C:\\Media_Project_123\\" + fileName);
         newFile.createNewFile();
         FileOutputStream fos = new FileOutputStream(newFile);
         fos.write(file.getBytes());

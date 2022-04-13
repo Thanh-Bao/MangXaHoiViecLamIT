@@ -17,7 +17,7 @@ const ImageLoader = ({ item, handleClickPhoto }) => {
         <Image
             className={classes.showPointer}
             layout="fill"
-            src={src}
+            src={`${API_URL}/${src}`}
             alt={item.title}
             onError={() => setSrc(`${API_URL}/static/404.jpg`)}
         />
