@@ -11,15 +11,15 @@ const useStyles = makeStyles((theme) => ({
 const ImageLoader = ({ item, handleClickPhoto }) => {
     const classes = useStyles();
 
-    const [src, setSrc] = useState(`${API_URL}${item.url}`);
+    const [src, setSrc] = useState(item.url);
 
     return (
         <Image
             className={classes.showPointer}
             layout="fill"
-            src={`${API_URL}/${src}`}
+            src={src}
             alt={item.title}
-            onError={() => setSrc(`${API_URL}/static/404.jpg`)}
+            onError={() => setSrc(`static/404.jpg`)}
         />
     )
 }
