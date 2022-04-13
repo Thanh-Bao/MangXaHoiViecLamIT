@@ -84,7 +84,6 @@ const MediaPhotoPage = (props) => {
                                 objectFit: 'contain',
                                 backgroundColor: 'rgb(0 0 0)',
                             }}
-                            errorIcon={<img src={`${API_URL}/static/404.jpg`} width="auto" height="auto" />}
                             imageStyle={{
                                 width: "auto",
                                 maxWidth: "100%",
