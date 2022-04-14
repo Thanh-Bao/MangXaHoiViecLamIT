@@ -20,7 +20,6 @@ import GalleryPostMedia from '@/components/gallery/postMedia';
 import Box from '@mui/material/Box';
 
 import { formatSpacingNumber } from '@/helper/roundNumber';
-import UserComment from '@/components/user/comment';
 import CommentSkeleton from '@/components/skeleton/comment';
 
 const useStyles = makeStyles((theme) => ({
@@ -64,43 +63,6 @@ const Post = ({ article }) => {
     const [commentContent, setCommentContent] = useState('');
     const [loading, setLoading] = useState(false);
     const [comments, setComments] = useState([]);
-
-    const completeTask = () => {
-        setLoading(false);
-    }
-
-    const startTask = () => {
-        setLoading(true);
-    }
-
-    const handleCreateComment = () => {
-        commentPost(_id, {
-            content: commentContent
-        }).then(payload => {
-            if (payload) {
-                setComments([
-                    ...[payload],
-                    ...comments
-                ])
-            }
-        }).catch(err => {
-            console.log(err)
-        })
-    }
-
-    const fetchComments = (postId) => {
-        startTask();
-
-        getCommentsPost(postId).then(payload => {
-            setComments(payload);
-        });
-
-        completeTask();
-    }
-
-    useEffect(() => {
-        fetchComments(_id);
-    }, [])
 
     return (
         <>
@@ -182,8 +144,6 @@ const Post = ({ article }) => {
                                 </Grid>
                             </div>
 
-                            {comments.map((comment, key) => <UserComment comment={comment} key={`comment-${key}`} />)}
-                            {loading && <CommentSkeleton />}
                         </Grid>
                     </Grid>
                 </Container>

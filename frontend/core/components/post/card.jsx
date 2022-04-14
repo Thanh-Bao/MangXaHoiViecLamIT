@@ -4,7 +4,7 @@ import Link from 'next/link';
 import React, { useState } from 'react';
 import ShowMore from '../showMore';
 import GalleryPostMedia from '../gallery/postMedia';
-import { PhotoLibrary, ModeComment } from '@mui/icons-material';
+import { PhotoLibrary } from '@mui/icons-material';
 import { roundToNearest5 } from '@/helper/roundNumber';
 import PostUserCard from './userCard';
 

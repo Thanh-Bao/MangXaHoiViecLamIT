@@ -1,7 +1,6 @@
 import React, { useEffect } from 'react';
 import { Toolbar, Container } from '@mui/material';
 import { makeStyles } from '@mui/styles';
-import Footer from './footer';
 import Header from './header';
 import { Scrollbars } from 'react-custom-scrollbars-2';
 
@@ -35,7 +34,6 @@ const WebLayout = (props) => {
                 {header && <Toolbar />}
             </Scrollbars>
 
-            <Footer />
         </React.Fragment>
     )
 }
