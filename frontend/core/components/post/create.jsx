@@ -153,10 +153,9 @@ const PostCreate = (props, ref) => {
 
 
                                     <ImageListItem key={item}>
-                                        <Image
-                                            layout='fill'
-                                            src={`images/${item}`}
-                                            srcSet={`images/${item}`}
+                                         <img
+                                            src={`${API_URL}/images/${item}`}
+                                            srcSet={`${API_URL}/images/${item}`}
                                             alt={item}
                                         />
                                     </ImageListItem>
