@@ -13,7 +13,7 @@ import org.springframework.web.servlet.view.JstlView;
 
 @EnableWebMvc
 @Configuration
-@ComponentScan({"tech.thuexe.controller.admin"})
+@ComponentScan({"live.itjob.controller.admin"})
 public class MvcConfig implements WebMvcConfigurer {
 
     @Override
