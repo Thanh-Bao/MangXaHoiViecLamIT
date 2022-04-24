@@ -2,7 +2,8 @@ ________________________________________
 
 ## LINK TÀI LIỆU: 
 
-📄 https://github.com/Thanh-Bao/MangXaHoiViecLamIT/tree/main/T%C3%80I%20LI%E1%BB%86U
+1. Vào link 📄 https://github.com/Thanh-Bao/MangXaHoiViecLamIT/tree/main/T%C3%80I%20LI%E1%BB%86U
+2. Click `view raw` để download tài liệu.
 ________________________________________
 
 
