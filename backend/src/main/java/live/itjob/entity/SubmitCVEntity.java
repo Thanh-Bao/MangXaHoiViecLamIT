@@ -10,17 +10,8 @@ import javax.persistence.*;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "_Order")
-public class OrderEntity extends BaseEntity {
-
-    @Column(nullable = false)
-    private int rentalDay;
-
-    @Column(nullable = false)
-    private int returnDay;
-
-    @Column(nullable = false)
-    private double amount;
+@Table(name = "_SubmitCV")
+public class SubmitCVEntity extends BaseEntity {
 
     @ManyToOne
     @JoinColumn(

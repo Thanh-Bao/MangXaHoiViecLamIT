@@ -1,6 +1,6 @@
 package live.itjob.controller.enpointAPI;
 
-import live.itjob.entity.OrderEntity;
+import live.itjob.entity.SubmitCVEntity;
 import live.itjob.service.OrderService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -18,13 +18,13 @@ public class OrderController {
     private final OrderService orderService;
 
     @PostMapping("/save")
-    public ResponseEntity<OrderEntity> save(@RequestBody OrderEntity order,
-                                            @RequestParam int postId) {
+    public ResponseEntity<SubmitCVEntity> save(@RequestBody SubmitCVEntity order,
+                                               @RequestParam int postId) {
         return ResponseEntity.ok().body(orderService.save(order, postId));
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<OrderEntity>> getOrders() {
+    public ResponseEntity<List<SubmitCVEntity>> getOrders() {
         return ResponseEntity.ok().body(orderService.findAllByUser());
     }
 

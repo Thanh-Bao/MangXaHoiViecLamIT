@@ -1,6 +1,6 @@
 package live.itjob.service.impl;
 
-import live.itjob.entity.OrderEntity;
+import live.itjob.entity.SubmitCVEntity;
 import live.itjob.entity.PostEntity;
 import live.itjob.entity.UserEntity;
 import live.itjob.service.OrderService;
@@ -23,7 +23,7 @@ public class OrderServiceImpl implements OrderService {
     private final OrderRepo orderRepo;
 
     @Override
-    public OrderEntity save(OrderEntity orderEntity, int postId) {
+    public SubmitCVEntity save(SubmitCVEntity orderEntity, int postId) {
         PostEntity postEntity = postService.findById(postId);
         UserEntity user = userService.getUser(userService.getUsername());
         orderEntity.setUser(user);
@@ -32,7 +32,7 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<OrderEntity> findAllByUser() {
+    public List<SubmitCVEntity> findAllByUser() {
         UserEntity user = userService.getUser(userService.getUsername());
         return orderRepo.findAllByUser(user);
     }

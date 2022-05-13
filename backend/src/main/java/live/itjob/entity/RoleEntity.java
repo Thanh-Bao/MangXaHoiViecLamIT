@@ -13,7 +13,7 @@ import javax.persistence.Table;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "_Role")
-public class RoleEntity extends BaseEntity{
+public class RoleEntity extends BaseEntity {
     @Column(name = "_name", length = 20, nullable = false)
     private String name;
 }

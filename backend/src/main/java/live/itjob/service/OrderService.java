@@ -1,11 +1,11 @@
 package live.itjob.service;
 
-import live.itjob.entity.OrderEntity;
+import live.itjob.entity.SubmitCVEntity;
 
 import java.util.List;
 
 public interface OrderService {
-    OrderEntity save(OrderEntity orderEntity, int postId);
+    SubmitCVEntity save(SubmitCVEntity orderEntity, int postId);
 
-    List<OrderEntity> findAllByUser();
+    List<SubmitCVEntity> findAllByUser();
 }
