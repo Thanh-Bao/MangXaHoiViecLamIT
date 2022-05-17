@@ -23,8 +23,8 @@ public class PostController {
     }
 
     @GetMapping("/all")
-    public ResponseEntity<List<PostReadDTO>> getPosts(){
-        return  ResponseEntity.ok().body(postService.getPosts());
+    public ResponseEntity<List<PostReadDTO>> getPosts() {
+        return ResponseEntity.ok().body(postService.getPosts());
     }
 }
 

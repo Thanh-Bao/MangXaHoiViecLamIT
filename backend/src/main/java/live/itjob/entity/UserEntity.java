@@ -1,4 +1,5 @@
 package live.itjob.entity;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,9 @@ import java.util.Set;
 import static javax.persistence.FetchType.EAGER;
 
 @Entity
-@Data @NoArgsConstructor @AllArgsConstructor
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 @Table(name = "_User")
 public class UserEntity extends BaseEntity {
 
@@ -26,15 +29,15 @@ public class UserEntity extends BaseEntity {
     private String username;
 
     @Column(name = "_phone")
-    @Size( min = 10, max=10,message = "Số điện thoại phải 10 chữ số")
+    @Size(min = 10, max = 10, message = "Số điện thoại phải 10 chữ số")
     private String phone;
 
     @Column(name = "_password")
     @NotBlank(message = "mật khẩu không được bỏ trống")
     private String password;
 
-    @Column(name = "_isActive",nullable = false)
-    private boolean isActive ;
+    @Column(name = "_isActive", nullable = false)
+    private boolean isActive;
 
     @ManyToMany(fetch = EAGER)
     private Set<RoleEntity> roles = new HashSet<>();
