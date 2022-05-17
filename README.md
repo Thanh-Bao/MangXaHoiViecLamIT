@@ -1,5 +1,21 @@
 ________________________________________
 
+
+## MỐC THỜI GIAN 
+
+
+
+| Cột mốc   | version 1 | version 2 | version 3 | version 4 |
+|:--------:|:---------------:|:----------------:|:---------------------:| :---------------------:|
+| N**gày hoàn thành** | 30/3/2022  | 15/4/2022          | 11/5/2022                     | 15/6/2022|
+| **Công việc cần hoàn thành** | Xác định được yêu cầu bài toán, Viết sơ bộ tài liệu SRS, user case. Hoàn thành tài liệu kiến trúc hệ thống. Tạo cấu trúc thư mục project. | Hoàn thành chức năng đăng nhập, quản lý user. Cập nhật bổ sung tất cả tài liệu. | Hoàn thành chức năng đăng tin tuyển dụng, nộp CV ứng tuyển. Fix xong các bug còn tồn động.  |Hoàn thành và thống nhất tất cả tài liệu, deploy sản phẩm lên hosting. Đưa sản phẩm vào vận hành thực tế.
+ 
+
+
+
+```
+
+
 ## LINK TÀI LIỆU: 
 
 1. Vào link 📄 https://github.com/Thanh-Bao/MangXaHoiViecLamIT/tree/main/T%C3%80I%20LI%E1%BB%86U
@@ -12,64 +28,4 @@ ________________________________________
 ________________________________________
 
 
-##  requirements
 
-    
-
-Mạng xã hội việc làm IT giúp cho nhưng người tuyển dụng và người tìm việc làm dễ dàng tiếp cận và trao đổi thông tin tìm việc dễ dàng hơn. Đễ dễ dàng cho việc xây dựng hệ thống ta cần phải xác định các REQUIRMENT mà người dùng cần.
-
--   Đối vs người quản lý
-    
-
-Cần phải biết dễ dàng thống kê hệ thộng đang vận hành.Hơn nữa, phải quản lý các vẫn đề xấu có thể xảy ra nhưng nick ảo để gân nên những đánh giá xấu cho người dủng.
-
--   Đối vs người dùng
-    
-
-Phải thuận tiện và dễ dàng tiếp cận giữa người muốn tuyển dụng và người tuyển dụng,
-
-## **Chức năng:**
-
-    
-
- **User**
-    
--   quản lý thông tin(thêm, sửa, xóa )
--   đăng CV
-    
--   conment( bài đăng), like , share
-    
--   đánh giá(cho doanh nghiệp)
-    
--   (chat)
-    
--   đăng kí, đăng nhập, đổi mất khẩu
-    
--   tìm kiếm, lọc
-**Ứng Viên**
-Đăng CV
-**HR**
- Quản lý CV( khi đăng bài viết sẻ có các CV nộp vào để xem các danh sách các CV)
-    
-
-**Admin**
-    
-
--   quản lý user(khóa,xắp sếp, phân quyền(doanh nghiệp và user))
-    
--   quản lý bài viết
-    
--   Thống kê
-    
-
--   bình luận
-    
--   bài viết
-    
--   tương tác
-    
--   báo cáo
-    
--   lượng người dùng, lượng người truy cập
-    
--   doanh thu
