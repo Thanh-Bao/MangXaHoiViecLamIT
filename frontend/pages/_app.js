@@ -7,7 +7,26 @@ import theme from '@/theme';
 import '../styles/global.scss';
 import { SnackbarProvider } from 'notistack';
 import { store } from '@/reduxToolkit/store';
-import { Provider } from 'react-redux'
+import { Provider } from 'react-redux';
+
+import '../public/assets/css/bootstrap.min.css';
+import '../public/assets/css/aos.css';
+import '../public/assets/css/animate.min.css';
+import '../public/assets/css/meanmenu.css';
+import '../public/assets/css/flaticon.css';
+import '../public/assets/css/odometer.min.css';
+import '../public/assets/css/owl.theme.default.min.css';
+import '../public/assets/css/magnific-popup.min.css';
+import '../public/assets/css/fancybox.min.css';
+import '../public/assets/css/selectize.min.css';
+import '../public/assets/css/metismenu.min.css';
+import '../public/assets/css/simplebar.min.css';
+import '../public/assets/css/dropzone.min.css';
+import '../public/assets/css/style.css';
+import '../public/assets/css/navbar.css';
+import '../public/assets/css/footer.css';
+import '../public/assets/css/dashboard.css';
+import '../public/assets/css/responsive.css';
 
 export default function Application(props) {
     const { Component, pageProps } = props;
