@@ -1,5 +1,7 @@
 import SideMenuItem from "./components/SideMenuItem";
 import DropdownProfile from "./components/DropdownProfile";
+import StatBox from "./components/StatBox";
+import RecentAlert from "./components/RecentAlert";
 
 export default function Admin() {
     return (
@@ -10,6 +12,11 @@ export default function Admin() {
                     .menu-profile {
                         margin-right: 4.1rem;
                     }
+
+                    .main-navbar, .sidemenu-header {
+                        background: #81b9ff;
+                    }
+
                 `}</style>
                 {/* Start Sidemenu Area */}
                 <div className="sidemenu-area">
@@ -82,42 +89,9 @@ export default function Admin() {
                     {/* Start Dashboard Fun Fact Area */}
                     <div className="dashboard-fun-fact-area">
                         <div className="row">
-                            <div className="col-lg-3 col-md-6 col-sm-6">
-                                <div className="stats-fun-fact-box">
-                                    <div className="icon-box">
-                                        <i className="ri-briefcase-line" />
-                                    </div>
-                                    <span className="sub-title">Việc làm đã đăng</span>
-                                    <h3>100</h3>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6 col-sm-6">
-                                <div className="stats-fun-fact-box">
-                                    <div className="icon-box">
-                                        <i className="ri-file-list-line" />
-                                    </div>
-                                    <span className="sub-title">Số lượng ứng tuyển</span>
-                                    <h3>6382</h3>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6 col-sm-6">
-                                <div className="stats-fun-fact-box">
-                                    <div className="icon-box">
-                                        <i className="ri-chat-2-line" />
-                                    </div>
-                                    <span className="sub-title">Tin nhắn</span>
-                                    <h3>85</h3>
-                                </div>
-                            </div>
-                            <div className="col-lg-3 col-md-6 col-sm-6">
-                                <div className="stats-fun-fact-box">
-                                    <div className="icon-box">
-                                        <i className="ri-bookmark-line" />
-                                    </div>
-                                    <span className="sub-title">CV</span>
-                                    <h3>57</h3>
-                                </div>
-                            </div>
+                            <StatBox count={100}>Bài đăng tuyển dụng</StatBox>
+                            <StatBox count={6382}>Số lượng ứng tuyển</StatBox>
+                            <StatBox count={3154}>Số lượng CV</StatBox>
                         </div>
                     </div>
                     {/* End Dashboard Fun Fact Area */}
@@ -127,96 +101,12 @@ export default function Admin() {
                             <div className="recent-notifications-box">
                                 <h3>Thông báo gần đây</h3>
                                 <ul>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Tyrone Lowe</span> Applied For A Job <strong>Software Engineer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Kaedyn Fraser</span> Applied For A Job <strong>Web Developer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Harold Adams</span> Applied For A Job <strong>Technical Architect</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Joshua Mcnair</span> Applied For A Job <strong>UI Designer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Kathryn Mcgee</span> Applied For A Job <strong>Senior Product Designer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Kaedyn Fraser</span> Applied For A Job <strong>Product Designer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Dianna Smiley</span> Applied For A Job <strong>Android Developer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Micheal Murphy</span> Applied For A Job <strong>Digital Marketer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Yamilet Booker</span> Applied For A Job <strong>Senior Data Engineer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-bookmark-line" />
-                                        </div>
-                                        <span>Milana Myles</span> Applied For A Job <strong>Shopify Developer</strong>
-                                        <button type="button" className="close" data-bs-dismiss="alert" aria-label="Close">
-                                            <span aria-hidden="true">×</span>
-                                        </button>
-                                    </li>
+                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
+                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
+                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
+                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
+                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
+                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
                                 </ul>
                             </div>
                         </div>
