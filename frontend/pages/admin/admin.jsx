@@ -2,6 +2,7 @@ import SideMenuItem from "./components/SideMenuItem";
 import DropdownProfile from "./components/DropdownProfile";
 import StatBox from "./components/StatBox";
 import RecentAlert from "./components/RecentAlert";
+import ApplicantCard from "./components/ApplicantCard";
 
 export default function Admin() {
     return (
@@ -95,7 +96,7 @@ export default function Admin() {
                         </div>
                     </div>
                     {/* End Dashboard Fun Fact Area */}
-                    {/* Start Notifications and Invoices Area */}
+                    {/* Start Notifications */}
                     <div className="row">
                         <div className="col-lg-6 col-md-12">
                             <div className="recent-notifications-box">
@@ -110,253 +111,43 @@ export default function Admin() {
                                 </ul>
                             </div>
                         </div>
-                        <div className="col-lg-6 col-md-12">
-                            <div className="invoices-box">
-                                <h3>Hóa đơn</h3>
-                                <ul>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-file-line" />
-                                        </div>
-                                        <ul>
-                                            <li className="paid">Paid</li>
-                                            <li>Order: #181815</li>
-                                            <li>Date: 14/08/2021</li>
-                                        </ul>
-                                        <span>Premium Plan</span>
-                                        <a href="dashboard-invoice.html" className="default-btn">View Invoice</a>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-file-line" />
-                                        </div>
-                                        <ul>
-                                            <li className="unpaid">Unpaid</li>
-                                            <li>Order: #181814</li>
-                                            <li>Date: 13/08/2021</li>
-                                        </ul>
-                                        <span>Advance Plan</span>
-                                        <a href="dashboard-invoice.html" className="default-btn">View Invoice</a>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-file-line" />
-                                        </div>
-                                        <ul>
-                                            <li className="paid">Paid</li>
-                                            <li>Order: #181813</li>
-                                            <li>Date: 12/08/2021</li>
-                                        </ul>
-                                        <span>Starter Plan</span>
-                                        <a href="dashboard-invoice.html" className="default-btn">View Invoice</a>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-file-line" />
-                                        </div>
-                                        <ul>
-                                            <li className="unpaid">Unpaid</li>
-                                            <li>Order: #181812</li>
-                                            <li>Date: 11/08/2021</li>
-                                        </ul>
-                                        <span>Basic Plan</span>
-                                        <a href="dashboard-invoice.html" className="default-btn">View Invoice</a>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-file-line" />
-                                        </div>
-                                        <ul>
-                                            <li className="paid">Paid</li>
-                                            <li>Order: #181815</li>
-                                            <li>Date: 14/08/2021</li>
-                                        </ul>
-                                        <span>Premium Plan</span>
-                                        <a href="dashboard-invoice.html" className="default-btn">View Invoice</a>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-file-line" />
-                                        </div>
-                                        <ul>
-                                            <li className="unpaid">Unpaid</li>
-                                            <li>Order: #181814</li>
-                                            <li>Date: 13/08/2021</li>
-                                        </ul>
-                                        <span>Advance Plan</span>
-                                        <a href="dashboard-invoice.html" className="default-btn">View Invoice</a>
-                                    </li>
-                                    <li>
-                                        <div className="icon">
-                                            <i className="ri-file-line" />
-                                        </div>
-                                        <ul>
-                                            <li className="paid">Paid</li>
-                                            <li>Order: #181813</li>
-                                            <li>Date: 12/08/2021</li>
-                                        </ul>
-                                        <span>Starter Plan</span>
-                                        <a href="dashboard-invoice.html" className="default-btn">View Invoice</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
+
                     </div>
-                    {/* End Notifications and Invoices Area */}
+                    {/* End Notifications */}
                     {/* Start Applicants Area */}
                     <div className="all-applicants-box">
                         <h2>Ứng viên gần đây</h2>
                         <div className="row">
-                            <div className="col-lg-6 col-md-12">
-                                <div className="single-applicants-card">
-                                    <div className="image">
-                                        <a href="#"><img src="assets/images/applicants/applicants-1.jpg" alt="image" /></a>
-                                    </div>
-                                    <div className="content">
-                                        <h3>
-                                            <a href="candidates-details-1.html">Jonathon Ronan</a>
-                                        </h3>
-                                        <span>IT Specialist</span>
-                                        <ul className="job-info">
-                                            <li><i className="ri-map-pin-line" /> USA</li>
-                                            <li><i className="ri-time-line" /> Part Time</li>
-                                        </ul>
-                                        <div className="applicants-footer">
-                                            <ul className="option-list">
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="View Aplication" type="button"><i className="ri-eye-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Approve Aplication" type="button"><i className="ri-check-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Reject Aplication" type="button"><i className="ri-close-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Aplication" type="button"><i className="ri-delete-bin-line" /></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 col-md-12">
-                                <div className="single-applicants-card">
-                                    <div className="image">
-                                        <a href="#"><img src="assets/images/applicants/applicants-2.jpg" alt="image" /></a>
-                                    </div>
-                                    <div className="content">
-                                        <h3>
-                                            <a href="candidates-details-1.html">John Carter</a>
-                                        </h3>
-                                        <span>UI/UX Designer</span>
-                                        <ul className="job-info">
-                                            <li><i className="ri-map-pin-line" /> Australia</li>
-                                            <li><i className="ri-time-line" /> Full Time</li>
-                                        </ul>
-                                        <div className="applicants-footer">
-                                            <ul className="option-list">
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="View Aplication" type="button"><i className="ri-eye-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Approve Aplication" type="button"><i className="ri-check-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Reject Aplication" type="button"><i className="ri-close-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Aplication" type="button"><i className="ri-delete-bin-line" /></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 col-md-12">
-                                <div className="single-applicants-card">
-                                    <div className="image">
-                                        <a href="#"><img src="assets/images/applicants/applicants-3.jpg" alt="image" /></a>
-                                    </div>
-                                    <div className="content">
-                                        <h3>
-                                            <a href="candidates-details-1.html">David Johan</a>
-                                        </h3>
-                                        <span>Programmer</span>
-                                        <ul className="job-info">
-                                            <li><i className="ri-map-pin-line" /> Francisco</li>
-                                            <li><i className="ri-time-line" /> Temporary</li>
-                                        </ul>
-                                        <div className="applicants-footer">
-                                            <ul className="option-list">
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="View Aplication" type="button"><i className="ri-eye-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Approve Aplication" type="button"><i className="ri-check-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Reject Aplication" type="button"><i className="ri-close-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Aplication" type="button"><i className="ri-delete-bin-line" /></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 col-md-12">
-                                <div className="single-applicants-card">
-                                    <div className="image">
-                                        <a href="#"><img src="assets/images/applicants/applicants-4.jpg" alt="image" /></a>
-                                    </div>
-                                    <div className="content">
-                                        <h3>
-                                            <a href="candidates-details-1.html">Betty Stevens</a>
-                                        </h3>
-                                        <span>Manager</span>
-                                        <ul className="job-info">
-                                            <li><i className="ri-map-pin-line" /> Canada</li>
-                                            <li><i className="ri-time-line" /> Part Time</li>
-                                        </ul>
-                                        <div className="applicants-footer">
-                                            <ul className="option-list">
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="View Aplication" type="button"><i className="ri-eye-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Approve Aplication" type="button"><i className="ri-check-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Reject Aplication" type="button"><i className="ri-close-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Aplication" type="button"><i className="ri-delete-bin-line" /></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 col-md-12">
-                                <div className="single-applicants-card">
-                                    <div className="image">
-                                        <a href="#"><img src="assets/images/applicants/applicants-5.jpg" alt="image" /></a>
-                                    </div>
-                                    <div className="content">
-                                        <h3>
-                                            <a href="candidates-details-1.html">Joshua Moreno</a>
-                                        </h3>
-                                        <span>Engineer</span>
-                                        <ul className="job-info">
-                                            <li><i className="ri-map-pin-line" /> Japan</li>
-                                            <li><i className="ri-time-line" /> Full Time</li>
-                                        </ul>
-                                        <div className="applicants-footer">
-                                            <ul className="option-list">
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="View Aplication" type="button"><i className="ri-eye-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Approve Aplication" type="button"><i className="ri-check-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Reject Aplication" type="button"><i className="ri-close-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Aplication" type="button"><i className="ri-delete-bin-line" /></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="col-lg-6 col-md-12">
-                                <div className="single-applicants-card">
-                                    <div className="image">
-                                        <a href="#"><img src="assets/images/applicants/applicants-6.jpg" alt="image" /></a>
-                                    </div>
-                                    <div className="content">
-                                        <h3>
-                                            <a href="candidates-details-1.html">Jerry Thomas</a>
-                                        </h3>
-                                        <span>Quality Assurance</span>
-                                        <ul className="job-info">
-                                            <li><i className="ri-map-pin-line" /> Germany</li>
-                                            <li><i className="ri-time-line" /> Internship</li>
-                                        </ul>
-                                        <div className="applicants-footer">
-                                            <ul className="option-list">
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="View Aplication" type="button"><i className="ri-eye-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Approve Aplication" type="button"><i className="ri-check-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Reject Aplication" type="button"><i className="ri-close-line" /></button></li>
-                                                <li><button className="option-btn d-inline-block" data-bs-toggle="tooltip" data-bs-placement="top" title="Delete Aplication" type="button"><i className="ri-delete-bin-line" /></button></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            <ApplicantCard name={'Jonathon Ronan'}
+                                job={'IT Specialist'}
+                                place={'USA'}
+                                jobType={'Part Time'}
+                            />
+                            <ApplicantCard name={'Nguyễn An Toàn'}
+                                job={'Programmer'}
+                                place={'Vietnam'}
+                                jobType={'Full Time'}
+                            />
+                            <ApplicantCard name={'Nguyễn An Toàn'}
+                                job={'Quality Assurance'}
+                                place={'Canada'}
+                                jobType={'Internship'}
+                            />
+                            <ApplicantCard name={'Nguyễn An Toàn'}
+                                job={'Manager'}
+                                place={'Australia'}
+                                jobType={'Full Time'}
+                            />
+                            <ApplicantCard name={'Nguyễn An Toàn'}
+                                job={'Engineer'}
+                                place={'Germany'}
+                                jobType={'Temporary'}
+                            />
+                            <ApplicantCard name={'Nguyễn An Toàn'}
+                                job={'UI/UX Designer'}
+                                place={'Campuchia'}
+                                jobType={'Full Time'}
+                            />
                         </div>
                     </div>
                     {/* Start Applicants Area */}
