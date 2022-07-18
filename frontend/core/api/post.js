@@ -42,7 +42,7 @@ export function getPost(slug) {
 export function getPostByUser(userId) {
     return new Promise((resolve, reject) => {
 
-        axios.get(`${API_URL}/post/user/${userId}`).then(response => {
+        axios.get(`${API_URL}/api/v1/post/user/${userId}`).then(response => {
             const { statusCode } = response.data;
 
             if (statusCode == 401) {

@@ -38,6 +38,12 @@ public class PostServiceImpl implements PostService {
         return dataMapperUtils.mapAll(post, PostReadDTO.class);
     }
 
+    @Override
+    public List<PostReadDTO> getPostByUsername(String username) {
+        List<PostEntity> post = postRepo.getPostByUsername(username);
+        return dataMapperUtils.mapAll(post, PostReadDTO.class);
+    }
+
 
     @Override
     public PostEntity findById(int id) {

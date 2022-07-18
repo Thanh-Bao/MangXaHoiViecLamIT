@@ -11,8 +11,9 @@ const MyTopics = (props) => {
 
     const { user } = props;
 
+
     useEffect(() => {
-        getPostByUser(user._id).then(payload => {
+        getPostByUser(user.username).then(payload => {
             setLoading(false);
 
             setPosts(payload);

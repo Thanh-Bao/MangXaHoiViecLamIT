@@ -10,6 +10,9 @@ import java.util.List;
 public interface PostRepo extends JpaRepository<PostEntity, Integer> {
     List<PostEntity> findAllByOrderByCreatedAtDesc();
     List<PostEntity> findAllByOrderByCreatedAtAsc();
+
+
+
     @Query(value = "select r.* from _post  as r join _location as l " +
             "on r.location_id= l.id where l._district_id= :distric_id and l._province_id= :province_id" +
             " and l._ward_id= :ward_id ORDER BY r._created_at DESC",nativeQuery = true)
@@ -41,4 +44,6 @@ public interface PostRepo extends JpaRepository<PostEntity, Integer> {
     List<PostEntity> searchByProviceAndDistricAndText (@Param("province_id") int province_id,@Param("distric_id") int distric_id,
                                               @Param("text") String text);
 
+    @Query(value = "select r.* from _post as r join _user as u on r.user_id = u.id where u._username = :username", nativeQuery = true)
+    List<PostEntity> getPostByUsername(@Param("username") String username);
 }

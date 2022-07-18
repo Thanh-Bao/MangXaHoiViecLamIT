@@ -10,6 +10,7 @@ import java.util.List;
 public interface PostService {
     PostReadDTO save(PostWriteDTO postWriteDTO);
     List<PostReadDTO> getPosts();
+    List<PostReadDTO> getPostByUsername(String username);
     PostEntity findById(int id);
     List<PostReadDTO> filter(int province_id,int distric_id,
                             int ward_id ,String skill) ;

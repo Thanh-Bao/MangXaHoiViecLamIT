@@ -21,6 +21,11 @@ public class PostController {
     public ResponseEntity<PostReadDTO> save(@RequestBody PostWriteDTO post) {
         return ResponseEntity.ok().body(postService.save(post));
     }
+    @GetMapping("/user/{username}")
+    public ResponseEntity<List<PostReadDTO>> getPostByUser(@PathVariable String username){
+        System.out.println(postService.getPostByUsername(username));
+        return ResponseEntity.ok().body(postService.getPostByUsername(username));
+    }
 
     @GetMapping("/all")
     public ResponseEntity<List<PostReadDTO>> getPosts() {

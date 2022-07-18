@@ -47,7 +47,8 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/admin/**",
                         "/api/v1/post/all",
                         "/api/v1/post/search",
-                        "/api/v1/post/filter"
+                        "/api/v1/post/filter",
+                        "/api/v1/post/user/**"
                 ).permitAll();
         http.authorizeHttpRequests().antMatchers(
                 "/api/v1/user/all/**",

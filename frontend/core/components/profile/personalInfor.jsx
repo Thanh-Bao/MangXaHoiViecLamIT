@@ -57,8 +57,6 @@ const PersonalInfor = (props) => {
     const classes = useStyles();
     const { enqueueSnackbar } = useSnackbar();
     const { user, isViewMyProfilePage, userIdLoggedIn } = props;
-    const [followStatus, setFollowStatus] = useState(user.follower.includes(userIdLoggedIn));
-
 
     return (
         <>
