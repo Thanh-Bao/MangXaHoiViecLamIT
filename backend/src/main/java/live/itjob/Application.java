@@ -38,7 +38,7 @@ public class Application implements WebMvcConfigurer {
     public void addResourceHandlers(ResourceHandlerRegistry registry) {
         registry.addResourceHandler("/static/**").addResourceLocations("/WEB-INF/static/")
                 .setCacheControl(CacheControl.maxAge(2, TimeUnit.HOURS).cachePublic());
-        registry.addResourceHandler("/images/**").addResourceLocations("file:" + System.getProperty("user.home") + imagePath);
+        registry.addResourceHandler("/images/**").addResourceLocations("file:" + "C:\\Media_Project_123\\");
     }
 
     @Bean

@@ -85,7 +85,7 @@ const Header = props => {
                     <Toolbar className={classes.toolbarHeader}>
                         <Link href={`/`}>
                             <a>
-                                <Image layout='fill' src="/logo.png" alt="logo" className={styles.logo} />
+                                {/* <Image layout='fill' src="/logo.png" alt="logo" className={styles.logo} /> */}
                             </a>
                         </Link>
 
