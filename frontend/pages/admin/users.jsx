@@ -1,14 +1,12 @@
 import SideMenuItem from "./components/SideMenuItem";
 import DropdownProfile from "./components/DropdownProfile";
-import StatBox from "./components/StatBox";
-import RecentAlert from "./components/RecentAlert";
 import ApplicantCard from "./components/ApplicantCard";
 
-export default function Admin() {
+export default function Users() {
     return (
         <>
             <div>
-                <title>Admin</title>
+                <title>Users</title>
                 <style jsx>{`
                     .menu-profile {
                         margin-right: 4.1rem;
@@ -61,35 +59,9 @@ export default function Admin() {
                             </nav>
                         </div>
                     </div>
-          
-                    <div className="breadcrumb-area">
-                        <h1>Chào, Andy!</h1>
-                    </div>
-                  
-                    <div className="dashboard-fun-fact-area">
-                        <div className="row">
-                            <StatBox />
-                        </div>
-                    </div>
-                   
-                    <div className="row">
-                        <div className="col-lg-6 col-md-12">
-                            <div className="recent-notifications-box">
-                                <h3>Thông báo gần đây</h3>
-                                <ul>
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-           
+                    
                     <div className="all-applicants-box">
-                        <h2>Ứng viên gần đây</h2>
+                        <h2>Danh sách ứng viên</h2>
                         <div className="row">
                             <ApplicantCard name={'Jonathon Ronan'}
                                 job={'IT Specialist'}

@@ -6,8 +6,7 @@ const SideMenuItem = props => {
         <>
             <li className="nav-item active">
                 <a href={pageUrl} className="nav-link">
-                    <span className="icon"></span>
-                    <span className="menu-title">{itemName}</span>
+                    <span className="menu-title ms-2">{itemName}</span>
                 </a>
             </li>
         </>

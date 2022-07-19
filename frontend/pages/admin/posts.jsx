@@ -4,11 +4,11 @@ import StatBox from "./components/StatBox";
 import RecentAlert from "./components/RecentAlert";
 import ApplicantCard from "./components/ApplicantCard";
 
-export default function Admin() {
+export default function Posts() {
     return (
         <>
             <div>
-                <title>Admin</title>
+                <title>Posts</title>
                 <style jsx>{`
                     .menu-profile {
                         margin-right: 4.1rem;
@@ -62,62 +62,7 @@ export default function Admin() {
                         </div>
                     </div>
           
-                    <div className="breadcrumb-area">
-                        <h1>Chào, Andy!</h1>
-                    </div>
-                  
-                    <div className="dashboard-fun-fact-area">
-                        <div className="row">
-                            <StatBox />
-                        </div>
-                    </div>
-                   
-                    <div className="row">
-                        <div className="col-lg-6 col-md-12">
-                            <div className="recent-notifications-box">
-                                <h3>Thông báo gần đây</h3>
-                                <ul>
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                </ul>
-                            </div>
-                        </div>
-
-                    </div>
-           
-                    <div className="all-applicants-box">
-                        <h2>Ứng viên gần đây</h2>
-                        <div className="row">
-                            <ApplicantCard name={'Jonathon Ronan'}
-                                job={'IT Specialist'}
-                                place={'USA'}
-                                jobType={'Part Time'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'Quality Assurance'}
-                                place={'Canada'}
-                                jobType={'Internship'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'Manager'}
-                                place={'Australia'}
-                                jobType={'Full Time'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'Engineer'}
-                                place={'Germany'}
-                                jobType={'Temporary'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'UI/UX Designer'}
-                                place={'Campuchia'}
-                                jobType={'Full Time'}
-                            />
-                        </div>
-                    </div>
+                    //asdfsafd
                 </div>   
             </div>
         </>
