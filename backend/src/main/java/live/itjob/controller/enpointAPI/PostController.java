@@ -23,6 +23,7 @@ public class PostController {
     }
     @GetMapping("/user/{username}")
     public ResponseEntity<List<PostReadDTO>> getPostByUser(@PathVariable String username){
+        System.out.println(username);
         System.out.println(postService.getPostByUsername(username));
         return ResponseEntity.ok().body(postService.getPostByUsername(username));
     }

@@ -44,6 +44,6 @@ public interface PostRepo extends JpaRepository<PostEntity, Integer> {
     List<PostEntity> searchByProviceAndDistricAndText (@Param("province_id") int province_id,@Param("distric_id") int distric_id,
                                               @Param("text") String text);
 
-    @Query(value = "select r.* from _post as r join _user as u on r.user_id = u.id where u._username = :username", nativeQuery = true)
-    List<PostEntity> getPostByUsername(@Param("username") String username);
+    @Query(value = "select * from _post JOIN _user ON _post.user_id = _user.id where _user._username = ?1",nativeQuery=true)
+    List<PostEntity> getPostByUsername(String username);
 }
