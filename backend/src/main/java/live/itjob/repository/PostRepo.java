@@ -1,6 +1,7 @@
 package live.itjob.repository;
 
 import live.itjob.entity.PostEntity;
+import live.itjob.entity.UserEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
@@ -10,9 +11,6 @@ import java.util.List;
 public interface PostRepo extends JpaRepository<PostEntity, Integer> {
     List<PostEntity> findAllByOrderByCreatedAtDesc();
     List<PostEntity> findAllByOrderByCreatedAtAsc();
-
-
-
     @Query(value = "select r.* from _post  as r join _location as l " +
             "on r.location_id= l.id where l._district_id= :distric_id and l._province_id= :province_id" +
             " and l._ward_id= :ward_id ORDER BY r._created_at DESC",nativeQuery = true)
@@ -45,5 +43,6 @@ public interface PostRepo extends JpaRepository<PostEntity, Integer> {
                                               @Param("text") String text);
 
     @Query(value = "select * from _post JOIN _user ON _post.user_id = _user.id where _user._username = ?1",nativeQuery=true)
-    List<PostEntity> getPostByUsername(String username);
+    List<PostEntity> getPostByUsername1(String username);
+    List<PostEntity> findAllByUser(UserEntity user);
 }
