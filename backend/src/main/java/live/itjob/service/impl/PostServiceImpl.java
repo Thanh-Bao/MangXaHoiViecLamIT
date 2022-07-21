@@ -39,8 +39,8 @@ public class PostServiceImpl implements PostService {
     }
 
     @Override
-    public List<PostReadDTO> getPostByUsername(String username) {
-        List<PostEntity> post = postRepo.getPostByUsername(username);
+    public List<PostReadDTO> getPostByUser(UserEntity user) {
+        List<PostEntity> post = postRepo.findAllByUser(user);
         return dataMapperUtils.mapAll(post, PostReadDTO.class);
     }
 

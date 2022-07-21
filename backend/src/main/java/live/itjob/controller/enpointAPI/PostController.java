@@ -1,6 +1,7 @@
 package live.itjob.controller.enpointAPI;
 
 import live.itjob.service.PostService;
+import live.itjob.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -16,6 +17,7 @@ import java.util.List;
 @Validated
 public class PostController {
     private final PostService postService;
+    private final UserService userService;
 
     @PostMapping("/save")
     public ResponseEntity<PostReadDTO> save(@RequestBody PostWriteDTO post) {
@@ -24,8 +26,7 @@ public class PostController {
     @GetMapping("/user/{username}")
     public ResponseEntity<List<PostReadDTO>> getPostByUser(@PathVariable String username){
         System.out.println(username);
-        System.out.println(postService.getPostByUsername(username));
-        return ResponseEntity.ok().body(postService.getPostByUsername(username));
+        return ResponseEntity.ok().body(postService.getPostByUser(userService.getUser(username)));
     }
 
     @GetMapping("/all")
