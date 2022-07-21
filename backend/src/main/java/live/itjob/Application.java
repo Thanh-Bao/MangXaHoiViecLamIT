@@ -56,7 +56,7 @@ public class Application implements WebMvcConfigurer {
         return new ObjectMapper();
     }
 
-
+/*
     @Bean
     CommandLineRunner run(UserService userService, RecruitmentService recruit, DataMapperUtils dataMapperUtils, FrameWorkRepo frameWorkRepo,
                           LanguageRepo languageRepo,
@@ -84,5 +84,5 @@ public class Application implements WebMvcConfigurer {
             frameWorkRepo.save(new FrameworkEntity("Spring"));
 
         };
-    }
+    }*/
 }
