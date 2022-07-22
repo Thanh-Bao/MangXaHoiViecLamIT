@@ -63,12 +63,12 @@ public class PostServiceImpl implements PostService {
             return dataMapperUtils.mapAll(post, PostReadDTO.class);
         }
         //ok tim theo provice
-        if (skill == "" & ward_id == 0 & distric_id == 0) {
+        if (skill == "" & ward_id == 0 & distric_id == 0 & province_id!=0) {
             List<PostEntity> post = postRepo.searchByProvince(province_id);
             return dataMapperUtils.mapAll(post, PostReadDTO.class);
         }
         // ok tim theo text and provice
-        if (skill != "" & ward_id == 0 & distric_id == 0) {
+        if (skill != "" & ward_id == 0 & distric_id == 0 & province_id!=0) {
             List<PostEntity> post = postRepo.searchByProviceAndText(province_id,skill);
             return dataMapperUtils.mapAll(post, PostReadDTO.class);
         }

@@ -50,6 +50,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/api/v1/post/filter",
                         "/api/v1/post/user/**"
                 ).permitAll();
+        http.authorizeHttpRequests().
+                antMatchers(
+                        "/api/v1/post/filter"
+                ).permitAll();
         http.authorizeHttpRequests().antMatchers(
                 "/api/v1/user/all/**",
                 "/api/v1/recruitment/**").hasAnyAuthority(Config.ROLE.ADMIN.getValue());

@@ -35,7 +35,7 @@ public class PostController {
     }
 //   API lọc ,nhận vào ID tỉnh , ID quận ,ID phường , and skill
 //    cái nào không chọn thì cho giá trị là "" hoặc 0 và lọc theo các giá trị chọn
-    @GetMapping ("/filter")
+    @PostMapping ("/filter")
     public ResponseEntity<List<PostReadDTO>> filter(@RequestParam(name = "skill") String skill,
                                                     @RequestParam(name = "province_id") int province_id,
                                                     @RequestParam(name = "distric_id") int distric_id,
