@@ -2,6 +2,7 @@ package live.itjob.controller.enpointAPI;
 
 import live.itjob.service.PostService;
 import live.itjob.service.UserService;
+import live.itjob.utility.FormSearch;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
@@ -36,12 +37,8 @@ public class PostController {
 //   API lọc ,nhận vào ID tỉnh , ID quận ,ID phường , and skill
 //    cái nào không chọn thì cho giá trị là "" hoặc 0 và lọc theo các giá trị chọn
     @PostMapping ("/filter")
-    public ResponseEntity<List<PostReadDTO>> filter(@RequestParam(name = "skill") String skill,
-                                                    @RequestParam(name = "province_id") int province_id,
-                                                    @RequestParam(name = "distric_id") int distric_id,
-                                                    @RequestParam(name = "ward_id") int ward_id){
-
-        return ResponseEntity.ok().body(postService.filter(province_id,distric_id,ward_id,skill)) ;
+    public ResponseEntity<List<PostReadDTO>> filter(@RequestBody FormSearch form){
+        return ResponseEntity.ok().body(postService.filter(form.getProvince_id(),form.getDistric_id(),form.getWard_id(),form.getText())) ;
     }
 // API tìm kiếm theo text , nhận vào text
     @GetMapping("/search")

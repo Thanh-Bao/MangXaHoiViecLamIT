@@ -11,6 +11,7 @@ import ListPost from '@/components/ListPost';
 import { useDispatch } from 'react-redux';
 import { updateLoginStatus } from '@/reduxTookit/slices/postsIndexSlice';
 import { havedLogin } from "@/helper/account";
+import Search from '@/components/Search';
 
 const useStyles = makeStyles((theme) => ({
 
@@ -28,6 +29,8 @@ const Index = props => {
         <>
             <Head />
             <WebLayout>
+                <br />
+                <Search></Search>
                 <br />
                 <ListPost />
             </WebLayout>
