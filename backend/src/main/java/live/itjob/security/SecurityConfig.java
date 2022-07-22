@@ -20,6 +20,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
 import static org.springframework.http.HttpMethod.GET;
+import static org.springframework.http.HttpMethod.POST;
 
 @Configuration @EnableWebSecurity @RequiredArgsConstructor
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -47,13 +48,9 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                         "/admin/**",
                         "/api/v1/post/all",
                         "/api/v1/post/search",
-                        "/api/v1/post/filter",
                         "/api/v1/post/user/**"
                 ).permitAll();
-        http.authorizeHttpRequests().
-                antMatchers(
-                        "/api/v1/post/filter"
-                ).permitAll();
+        http.authorizeHttpRequests().antMatchers(POST,"/api/v1/post/filter").permitAll();
         http.authorizeHttpRequests().antMatchers(
                 "/api/v1/user/all/**",
                 "/api/v1/recruitment/**").hasAnyAuthority(Config.ROLE.ADMIN.getValue());

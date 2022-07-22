@@ -15,10 +15,13 @@ export const postsIndexSlice = createSlice({
     },
     updateLoginStatus: (state, { payload }) => {
       state.havedLogin = payload;
+    },
+    searchPost: (state, { payload }) => {
+      state.arrPost = [];
     }
   },
 })
 
-export const { fetchPost, addPost, updateLoginStatus } = postsIndexSlice.actions
+export const { fetchPost, addPost, updateLoginStatus, searchPost } = postsIndexSlice.actions
 
 export default postsIndexSlice.reducer 
