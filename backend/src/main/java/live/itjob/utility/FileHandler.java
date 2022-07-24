@@ -22,9 +22,6 @@ public class FileHandler {
         if (!Files.isDirectory(Paths.get(URLImage))) {
             new File(URLImage).mkdirs();
         }
-        if (file.getSize() > (10 * 1024 * 1024)) {
-            throw new CustomException("Vui lòng chọn file dung lượng nhỏ", HttpStatus.BAD_REQUEST);
-        }
         if (file.getSize() == 0 || file == null) {
             throw new CustomException("Bạn chưa chọn file", HttpStatus.BAD_REQUEST);
         }
