@@ -1,10 +1,20 @@
 import SideMenuItem from "./components/SideMenuItem";
 import DropdownProfile from "./components/DropdownProfile";
-import StatBox from "./components/StatBox";
-import RecentAlert from "./components/RecentAlert";
-import ApplicantCard from "./components/ApplicantCard";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { format } from 'timeago.js';
 
 export default function Posts() {
+    const [content, setContent] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:80/api/v1/post/all')
+        .then((response) => {
+            setContent(response.data);
+        });
+
+    }, []);
+
     return (
         <>
             <div>
@@ -18,6 +28,9 @@ export default function Posts() {
                         background: white;
                     }
 
+                    table tr{
+                        line-height: 4rem;
+                    }
                 `}</style>
 
                 <div className="sidemenu-area">
@@ -62,7 +75,33 @@ export default function Posts() {
                         </div>
                     </div>
           
-                    //asdfsafd
+                    
+                        <table className="table table-bordered table-hover table-warning">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Description</th>
+                                    <th scope="col">Created</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Phone</th>
+                                    <th scope="col">Status</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {content.map((post) => {
+                                    return (
+                                        <tr>
+                                            <th scope="row">{post.id}</th>
+                                            <td>{post.description}</td>
+                                            <td>{format(post.createdAt*1000)}</td>
+                                            <td>{post.user.username}</td>
+                                            <td>{post.user.phone}</td>
+                                            <td>Active</td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                        </table>
                 </div>   
             </div>
         </>
