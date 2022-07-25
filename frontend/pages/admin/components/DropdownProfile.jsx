@@ -13,27 +13,27 @@ const DropdownProfile = props => {
                     Tài khoản
                 </DropdownToggle>
                 <DropdownMenu aria-labelledby="dropdownMenuButton">
-                    <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <DropdownItem href="#pablo">
                         <div className="info text-center">
                             <span className="name">Admin Smith</span>
                             <p className="mb-3 email">smith@gmail.com</p>
                         </div>
                     </DropdownItem>
 
-                    <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <DropdownItem href="#pablo">
                         <div className="nav-item active text-center">
                             <a href='/admin/admin' className="nav-link">
                                 <span className="menu-title">Tổng quan</span>
                             </a>
                         </div>
                     </DropdownItem>
-                    <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <DropdownItem href="#pablo">
                         <div className="nav-item text-center">
                             <a href='/admin/users' className="nav-link">
                                 <span className="menu-title">Users</span>
                             </a>
                         </div></DropdownItem>
-                    <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <DropdownItem href='/admin/cv'>
                         <div className="nav-item text-center">
                             <a href='/admin/cv' className="nav-link">
                                 <span className="menu-title">CV</span>
@@ -41,10 +41,10 @@ const DropdownProfile = props => {
                         </div>
                     </DropdownItem>
 
-                    <DropdownItem href="#pablo" onClick={(e) => e.preventDefault()}>
+                    <DropdownItem href="#pablo">
                         <ul className="profile-nav text-center">
                             <li className="nav-item">
-                                <a href='/' className="nav-link"><span>Đăng xuất</span></a>
+                                <a href='/admin/adminLogin' className="nav-link"><span>Đăng xuất</span></a>
                             </li>
                         </ul>
                     </DropdownItem>

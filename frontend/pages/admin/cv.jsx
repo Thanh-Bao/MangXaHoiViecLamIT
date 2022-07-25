@@ -1,7 +1,20 @@
 import SideMenuItem from "./components/SideMenuItem";
 import DropdownProfile from "./components/DropdownProfile";
+import { useEffect, useState } from "react";
+import axios from "axios";
+import { format } from 'timeago.js';
 
 export default function CV() {
+    const [content, setContent] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:80/api/v1/cv/getAll')
+        .then((response) => {
+            setContent(response.data);
+        });
+
+    }, []);
+
     return (
         <>
             <div>
@@ -15,6 +28,9 @@ export default function CV() {
                         background: white;
                     }
 
+                    table tr{
+                        line-height: 4rem;
+                    }
                 `}</style>
 
                 <div className="sidemenu-area">
@@ -58,9 +74,34 @@ export default function CV() {
                             </nav>
                         </div>
                     </div>
-
-
-                    //dsafasdfas
+          
+                    
+                        <table className="table table-bordered table-hover table-warning">
+                            <thead>
+                                <tr>
+                                    <th scope="col">ID</th>
+                                    <th scope="col">Username</th>
+                                    <th scope="col">Title</th>
+                                    <th scope="col">Skill</th>
+                                    <th scope="col">Education</th>
+                                    <th scope="col">File name</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {content.map((cv) => {
+                                    return (
+                                        <tr>
+                                            <th scope="row">{cv.id}</th>
+                                            <td>{cv.username}</td>
+                                            <td>{cv.title}</td>
+                                            <td>{cv.skill}</td>
+                                            <td>{cv.education}</td>
+                                            <td>{cv.link}</td>
+                                        </tr>
+                                    );
+                                })}
+                        </tbody>
+                        </table>
                 </div>   
             </div>
         </>

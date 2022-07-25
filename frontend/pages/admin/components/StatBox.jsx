@@ -5,8 +5,6 @@ import axios from 'axios';
 import { useEffect, useState } from 'react';
 
 const StatBox = props => {
-    const title = props.children;
-    const { count } = props;
     const [numOfPost, setNumOfPost] = useState(0);
     const [numOfUser, setNumOfUser] = useState(0);
     const [numOfCV, setNumOfCV] = useState(0);
@@ -20,6 +18,11 @@ const StatBox = props => {
         axios.get('http://localhost:80/api/v1/user/all')
         .then((response) => {
             setNumOfUser(response.data.length);
+        });
+
+        axios.get('http://localhost:80/api/v1/cv/getAll')
+        .then((response) => {
+            setNumOfCV(response.data.length);
         });
     }, {});
 
@@ -49,7 +52,7 @@ const StatBox = props => {
                         <ContactMailIcon sx={{ fontSize: '32px' }} />
                     </div>
                     <span className="sub-title">Số lượng CV</span>
-                    <h3>3</h3>
+                    <h3>{numOfCV}</h3>
                 </div>
             </div>
         </>
