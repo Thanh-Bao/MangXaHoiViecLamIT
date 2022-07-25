@@ -7,6 +7,8 @@ import live.itjob.utility.CustomException;
 import live.itjob.utility.DataMapperUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.annotation.Validated;
+
+import live.itjob.DTO.post.PostReadDTO;
 import live.itjob.DTO.user.UserDTO;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +17,18 @@ import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import javax.validation.Valid;
 import java.net.URI;
+import java.util.List;
 
 @RestController @RequiredArgsConstructor @RequestMapping(path = "${APIVersion}/user") @Validated
 public class UserController {
 
     private final UserService userService;
     private final DataMapperUtils dataMapperUtils;
+    
+    @GetMapping("/all")
+    public ResponseEntity<List<UserDTO>> getUsers() {
+        return ResponseEntity.ok().body(userService.getUsers());
+    }
 
     @GetMapping("/exist/{username}")
     public ResponseEntity<Boolean> checkUserExist(@PathVariable String username) {

@@ -63,7 +63,7 @@ export default function Admin() {
                     </div>
           
                     <div className="breadcrumb-area">
-                        <h1>Chào, Andy!</h1>
+                        <h1>Chào, Admin!</h1>
                     </div>
                   
                     <div className="dashboard-fun-fact-area">
@@ -77,11 +77,9 @@ export default function Admin() {
                             <div className="recent-notifications-box">
                                 <h3>Thông báo gần đây</h3>
                                 <ul>
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
-                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Phi công'} />
+                                    <RecentAlert employee={'Toàn Nguyễn'} jobTitle={'Java Developer'} />
+                                    <RecentAlert employee={'Jonathon Ronan'} jobTitle={'Phi công'} />
+                                    <RecentAlert employee={'Hau'} jobTitle={'QA'} />
                                 </ul>
                             </div>
                         </div>
@@ -101,19 +99,9 @@ export default function Admin() {
                                 place={'Canada'}
                                 jobType={'Internship'}
                             />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
+                            <ApplicantCard name={'Trần Văn Khoa'}
                                 job={'Manager'}
                                 place={'Australia'}
-                                jobType={'Full Time'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'Engineer'}
-                                place={'Germany'}
-                                jobType={'Temporary'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'UI/UX Designer'}
-                                place={'Campuchia'}
                                 jobType={'Full Time'}
                             />
                         </div>

@@ -9,7 +9,7 @@ const ApplicantCard = props => {
                             <a href="#">{name}</a>
                         </h3>
                         <span>{job}</span>
-                        <ul className="job-info">
+                        <ul className="">
                             <li className="ps-0"><i className="ri-map-pin-line" /> {place}</li>
                             <li><i className="ri-time-line" />  {jobType}</li>
                         </ul>
