@@ -1,8 +1,21 @@
 import SideMenuItem from "./components/SideMenuItem";
 import DropdownProfile from "./components/DropdownProfile";
 import ApplicantCard from "./components/ApplicantCard";
+import { useEffect, useState } from "react";
+import { format } from 'timeago.js';
+import axios from "axios";
 
 export default function Users() {
+    const [content, setContent] = useState([]);
+
+    useEffect(() => {
+        axios.get('http://localhost:80/api/v1/user/all')
+        .then((response) => {
+            setContent(response.data);
+        });
+
+    }, []);
+
     return (
         <>
             <div>
@@ -61,33 +74,17 @@ export default function Users() {
                     </div>
                     
                     <div className="all-applicants-box">
-                        <h2>Danh sách ứng viên</h2>
+                        <h2>Danh sách user</h2>
                         <div className="row">
-                            <ApplicantCard name={'Jonathon Ronan'}
-                                job={'IT Specialist'}
-                                place={'USA'}
-                                jobType={'Part Time'}
+                            {content.map((user) => {
+                                return (
+                                    <ApplicantCard name={user.username}
+                                        job={'Joined: ' + format(user.createdAt * 1000)}
+                                        place={'Viet Nam'}
+                                        jobType={'Phone:  ' + user.phone}
                             />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'Quality Assurance'}
-                                place={'Canada'}
-                                jobType={'Internship'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'Manager'}
-                                place={'Australia'}
-                                jobType={'Full Time'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'Engineer'}
-                                place={'Germany'}
-                                jobType={'Temporary'}
-                            />
-                            <ApplicantCard name={'Nguyễn An Toàn'}
-                                job={'UI/UX Designer'}
-                                place={'Campuchia'}
-                                jobType={'Full Time'}
-                            />
+                                );
+                            })}
                         </div>
                     </div>
                 </div>   
