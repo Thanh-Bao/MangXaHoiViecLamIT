@@ -17,6 +17,7 @@ const ListPost = props => {
 
     useEffect(() => {
         getPosts().then(item => {
+            // console.log("ITEM____", item);
             const data = item.map(postMapper)
             setLoading(false);
             dispatch(fetchPost(data))

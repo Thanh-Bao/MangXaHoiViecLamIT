@@ -4,7 +4,11 @@ import React, { useEffect, useState, useRef } from 'react';
 import { render } from 'react-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import { searchPost } from '@/reduxTookit/slices/postsIndexSlice';
+import { postMapper } from '@/helper/mapper';
+import { useSnackbar } from 'notistack';
+
 const Search = props => {
+    const { enqueueSnackbar } = useSnackbar();
     const [data, setData] = useState({
         text: "",
         province: "0",
@@ -22,11 +26,11 @@ const Search = props => {
         })
     }, []);
 
-    useEffect(() => {
-        if (counterRender.current > 3) {
-            submit();
-        }
-    }, [data]);
+    // useEffect(() => {
+    //     if (counterRender.current > 3) {
+    //         submit();
+    //     }
+    // }, [data]);
 
     const [dataDistric, setDataDistric] = useState([]);
     const [dataWard, setDataWard] = useState([{
@@ -96,7 +100,22 @@ const Search = props => {
         }
         search(params).then(posts => {
             console.log("df", posts)
-            dispatch(searchPost(posts));
+            if (posts.length !== 0) {
+                dispatch(searchPost(posts.map(post => ({
+                    ...post,
+                    content: post.description,
+                    _id: post.id,
+                    media: post.images.map(image => (
+                        {
+                            ...image,
+                            _id: image.id,
+                            url: `/images/${image.link}`
+                        }
+                    ))
+                }))));
+            } else {
+                enqueueSnackbar('Không tìm thấy', { variant: 'error' });
+            }
         });
     }
     return (

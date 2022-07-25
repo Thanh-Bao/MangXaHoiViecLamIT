@@ -17,7 +17,7 @@ export const postsIndexSlice = createSlice({
       state.havedLogin = payload;
     },
     searchPost: (state, { payload }) => {
-      state.arrPost = [];
+      state.arrPost = payload;
     }
   },
 })
