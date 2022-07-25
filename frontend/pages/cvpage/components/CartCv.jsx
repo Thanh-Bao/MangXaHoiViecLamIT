@@ -1,23 +1,29 @@
 import { save } from '@api/cv';
 import React, { useEffect, useState } from 'react';
+import { getMetaAccount } from '@/helper/account';
 const CartCv = () => {
     const [data,setData] = useState({
         title: "",
         skill:"",
         education:"",
         link:"",
-        username:"duong"
+        username: ""
 
     });
+    useEffect(() => {
+        const newdata = { ...data }
+        newdata.username =  getMetaAccount().username
+        setData(newdata);
+    }, []);
+
     function handle(e) {
-        console.log(e);
         const newdata = { ...data }
         newdata[e.target.id] = e.target.value
         setData(newdata)
        
+       
     }
     function handleFile(e){
-        console.log(e);
         const newdata = { ...data }
         newdata[e.target.id] = e.target.files[0];
         setData(newdata)
@@ -25,7 +31,10 @@ const CartCv = () => {
     }
     function submit() {
             save(data).then(item=>{
-                console.log(item)
+                if(item == true) 
+                window.alert("submit CV successful")
+                else
+                window.alert("submit CV fail")
             })
     }
     return (
@@ -55,6 +64,9 @@ const CartCv = () => {
                      margin-bottom: 10px;
                      font-size: 18px;
                     }
+                 .btn {
+                    margin-top: 20px;
+                 }   
                  `}</style>
             </div>
         </>
