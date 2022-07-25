@@ -8,6 +8,7 @@ const Cv = () => {
             <Head title='Thông tin cá nhân' />
             <WebLayout>
                 <div class="container">
+                    <br></br>
                         <CartCv />
                 </div>
             </WebLayout>
